@@ -146,4 +146,4 @@ Uma mitigação natural para quando vocês montarem o assistente de discovery/at
 
 ## Observações
 
-<!-- PROC-042 v1 e v2, porque a etapa 1 já apontou essa duplicidade como o risco mais provável e mais fácil de confirmar com o conteúdo completo. -->
+<!-- Risco: um assistente de RAG pode recuperar chunks de ambas as versões para a mesma pergunta (ex: "frete para 600kg para o Sul") e combinar, por exemplo, o multiplicador da v2 com o fator de peso da v1, gerando um valor que não corresponde a nenhuma das duas versões oficialmente. Isso seria pior do que usar uma versão desatualizada consistentemente — seria uma "terceira versão" inventada. -->
