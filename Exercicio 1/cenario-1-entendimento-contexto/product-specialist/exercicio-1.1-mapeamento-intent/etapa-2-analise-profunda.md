@@ -146,4 +146,5 @@ Uma mitigação natural para quando vocês montarem o assistente de discovery/at
 
 ## Observações
 
-<!-- Risco: um assistente de RAG pode recuperar chunks de ambas as versões para a mesma pergunta (ex: "frete para 600kg para o Sul") e combinar, por exemplo, o multiplicador da v2 com o fator de peso da v1, gerando um valor que não corresponde a nenhuma das duas versões oficialmente. Isso seria pior do que usar uma versão desatualizada consistentemente — seria uma "terceira versão" inventada. -->
+<!-- Risco: um assistente de RAG pode recuperar chunks de ambas as versões para a mesma pergunta (ex: "frete para 600kg para o Sul") e combinar, por exemplo, o multiplicador da v2 com o fator de peso da v1, gerando um valor que não corresponde a nenhuma das duas versões oficialmente. Isso seria pior do que usar uma versão desatualizada consistentemente — seria uma "terceira versão" inventada. 
+a análise profunda confirma e quantifica exatamente o que a Etapa 1 só suspeitava — aqui já dá para ver os valores concretos da contradição, o que muda o tipo de ação que se pode propor no discovery (de "investigar se há conflito" para "decidir qual versão vigora e como sinalizar isso ao pipeline").-->
