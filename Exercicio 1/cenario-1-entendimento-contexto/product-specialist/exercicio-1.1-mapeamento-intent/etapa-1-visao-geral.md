@@ -56,4 +56,4 @@ Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a u
 
 ## Observações
 
-<!-- mapa de temas cobertos, hipóteses de gaps levantadas pelo Claude -->
+<!--Observações: o output já aponta corretamente, só com metadados, o risco mais crítico do caso (a duplicidade do PROC-042) e antecipa 3 dos 4 gaps reais listados no Anexo A — o que mostra que uma visão geral bem estruturada já vale muito antes de gastar orçamento de contexto com conteúdo completo. -->
