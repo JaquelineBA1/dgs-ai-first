@@ -200,11 +200,10 @@ Por fim, os guardrails cobrem muito bem frete especial e FAQ/carga perigosa, por
 
 ## Diagrama visual (Claude Design)
 
-<!-- inserir aqui a imagem do diagrama, ex: ![diagrama](./diagrama-fluxo.png) -->
-
+![Diagrama de fluxo do atendente](./jornada-atendente-ia.png)
 ## Entregável
 
 - [x] Jornada textual (fluxo principal, fallback, feedback, guardrails)
 - [x] Autocrítica documentada
-- [ ] Diagrama visual gerado pelo Claude Design
+- [x] Diagrama visual gerado pelo Claude Design
 - [x] Evidência do uso das ferramentas (prompt + output nesta página)
