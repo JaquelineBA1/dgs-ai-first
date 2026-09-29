@@ -27,9 +27,9 @@ Caso simulado: NovaTech (empresa de logística), documentação contraditória e
 
 | # | Exercício | Status |
 |---|-----------|--------|
-| 1.1 | Mapeamento de intent com engenharia de contexto | 🔲 Em andamento |
-| 1.2 | Design de jornada com componente de IA | 🔲 Não iniciado |
-| 1.3 | Especificação de requisitos de RAG do ponto de vista do produto | 🔲 Não iniciado |
+| 1.1 | Mapeamento de intent com engenharia de contexto | 🔲 Concluído |
+| 1.2 | Design de jornada com componente de IA | 🔲 Concluído |
+| 1.3 | Especificação de requisitos de RAG do ponto de vista do produto | 🔲 Em andamento |
 
 ## Próximos cenários
 
