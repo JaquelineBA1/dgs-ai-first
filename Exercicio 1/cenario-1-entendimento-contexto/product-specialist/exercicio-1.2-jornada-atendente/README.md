@@ -3,18 +3,63 @@
 **Papel:** Product Specialist (Analista de Requisitos)
 **Ferramentas utilizadas:** Claude (chat) + Claude Design
 
-## Contexto
-
-Com base no discovery (simulado), mapeei a jornada do atendente usando o
-assistente de IA, cobrindo o caminho principal e os caminhos de exceção
-(fallback e feedback), além de guardrails de comportamento específicos ao
-domínio da NovaTech.
-
+Enunciado
 1. Usando o **Claude**, elabore a jornada do atendente em formato de texto estruturado, incluindo:
    - O fluxo principal: atendente recebe dúvida → consulta o assistente → recebe resposta com fonte → usa no atendimento.
    - O fluxo de fallback: o que acontece quando o assistente não tem confiança na resposta ou quando o atendente discorda.
    - O fluxo de feedback: como o atendente sinaliza que uma resposta estava errada, desatualizada ou incompleta.
    - Ao menos 2 guardrails de comportamento do assistente (ex: "nunca inventar um prazo que não esteja documentado").
+  
+2. Usando o **Claude Design**, transforme a jornada textual em um diagrama visual de fluxo que mostre os 3 caminhos (principal, fallback, feedback) de forma clara para apresentar ao time e ao cliente.
+ 
+**Contexto**
+
+Mapeei a jornada do atendente da NovaTech usando o assistente de IA, partindo dos dados do discovery (simulado) e dos riscos documentais levantados no exercício 1.1. Minha premissa de desenho é que o assistente nunca substitui a decisão humana quando as fontes são contraditórias, ausentes ou informais, e que toda correção feita por pessoas precisa voltar para a base que o assistente consulta.
+
+Processo adotado
+V1 (Claude): pedi a jornada completa e uma autocrítica do próprio modelo.
+Análise crítica minha: revisei a V1 contra as conclusões do 1.1 e contra a autocrítica do Claude, e decidi o que aceitar, corrigir ou deixar como pergunta aberta.
+V2 (refinada por mim): reescrevi a jornada incorporando essas decisões.
+Diagrama (Claude Design): gerei o diagrama a partir da V2 e conferi cada exemplo contra o corpus antes de considerá-lo pronto.
+
+**Prompt utilizado no Claude:**
+''
+Sou o Product Specialist do projeto de assistente de IA da NovaTech (empresa de
+logística). Já concluímos a fase de discovery e agora preciso mapear a jornada do
+atendente usando esse assistente.
+
+Dados do discovery:
+- Os atendentes hoje abrem em média 4 fontes diferentes por chamado.
+- As dúvidas mais comuns são: prazos de entrega (35%), regras de frete (25%),
+  política de devolução (20%), outros (20%).
+- Em 15% dos casos, o atendente não encontra resposta e escala para o supervisor.
+
+Contexto adicional do projeto: já identificamos que a documentação da NovaTech tem
+problemas reais — duas versões contraditórias do procedimento de frete especial
+(PROC-042 v1 e v2, sem indicação de qual está vigente), e um FAQ informal do time
+de atendimento que contém práticas sem respaldo em nenhum documento oficial.
+
+Elabore a jornada do atendente usando o assistente, em formato de texto
+estruturado, cobrindo:
+
+Fluxo principal (caminho feliz): do momento em que o atendente recebe a dúvida
+do cliente até usar a resposta do assistente no atendimento.
+
+Fluxo de fallback: o que acontece quando o assistente não tem confiança
+suficiente na resposta, ou quando o atendente discorda do que foi retornado.
+
+Fluxo de feedback: como o atendente sinaliza que uma resposta estava errada,
+desatualizada ou incompleta, e o que acontece com esse sinal depois.
+
+Pelo menos 2 guardrails de comportamento do assistente, específicos ao domínio
+da NovaTech (não genéricos) — por exemplo, ligados diretamente aos problemas
+reais de documentação que já identificamos (as duas versões do PROC-042, ou o
+FAQ sem validação formal).
+
+Depois de gerar a primeira versão, quero que você mesmo aponte se algum dos fluxos
+ficou incompleto ou genérico demais, para eu poder refinar antes de passar isso
+para o Claude Design.
+
 
 ## Jornada textual
 
