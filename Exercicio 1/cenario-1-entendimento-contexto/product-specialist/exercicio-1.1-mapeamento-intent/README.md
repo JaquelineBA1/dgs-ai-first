@@ -8,7 +8,7 @@
 Breve resumo do exercício: você vai pré-analisar a documentação da NovaTech
 em 3 etapas progressivas (engenharia de contexto), antes de qualquer entrevista
 com stakeholder, para gerar hipóteses e identificar riscos.
- **Etapa 1 — Visão geral:** Forneça ao Claude apenas os títulos, metadados e resumos dos 5 documentos (não o conteúdo completo). Peça um mapa de temas cobertos e hipóteses de gaps
+
 
 ## Estratégia de contexto adotada
 
@@ -20,7 +20,8 @@ Isolar variáveis para fazer um diff rigoroso. Ao compartilhar as duas versões 
 
 Esse desenho imita a dinâmica real de uma entrevista de Discovery, e ao mesmo tempo testa como um assistente de IA raciocina sob informação incremental — que é literalmente um dos riscos que estou mapeando (um assistente que mistura versões, ou que ancora em conclusões antes de ter o quadro completo). Numa discovery de verdade, documentos formais chegam primeiro e documentos informais como o FAQ aparecem depois, muitas vezes revelando que a prática real diverge do que está escrito. Estruturar a análise nessa mesma ordem serve tanto para me preparar para a entrevista quanto para observar, na prática, se as conclusões da etapa 1 se sustentaram, precisaram de ajuste, ou foram diretamente confirmadas — o que é, em si, uma forma de auditar a qualidade do próprio raciocínio incremental..
 
-## Etapa 1 — Visão geral (metadados apenas)
+## **Etapa 1 — Visão geral:** 
+Forneça ao Claude apenas os títulos, metadados e resumos dos 5 documentos (não o conteúdo completo). Peça um mapa de temas cobertos e hipóteses de gaps
 
 **Por que forneci a informação nessa ordem:**
 Optei por apresentar primeiro apenas os metadados — título, versão, responsável e resumo de uma linha — porque essa camada de informação já é suficiente para revelar riscos estruturais e de governança que ficam menos visíveis quando o conteúdo completo dos documentos está disponível. Sobreposição de responsáveis entre diretorias, proliferação de versões catalogadas como documentos distintos, ausência de controle formal de versão e desequilíbrio de maturidade documental são padrões que aparecem no nível dos metadados, e queria testar se essa camada, sozinha, já seria capaz de gerar hipóteses de risco relevantes antes de qualquer leitura de conteúdo.
