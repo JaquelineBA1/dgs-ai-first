@@ -78,8 +78,20 @@ Vale perguntar diretamente: o que mudou entre PROC-042 v1.0 e v2.0, e a v1.0 ain
 Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.
  ```
 
-**Como a qualidade do output foi (genérica? específica?):**
-A qualidade foi genérica, em alguns pontos tentou especificar mas devido a falta de informações, acabou mencionando informações genéricas.
+**Análise crítica:**
+Pontos fortes
+
+Hipóteses ancoradas nos metadados. Dono compartilhado, versões catalogadas como documentos separados e FAQ sem dono aparecem como riscos concretos, não como uma lista padrão.
+Tudo marcado como hipótese. Isso permitiu testar nas etapas seguintes.
+Dois achados não óbvios: a fronteira entre devolução e carga pesada e a falta de critério documentado para os tiers.
+Perguntas de discovery já acionáveis.
+
+Limitações
+
+Entrada incompleta. O prompt deixou de fora datas, status de vigência, o aviso "não validado por Compliance" e os detalhes dos resumos, e nunca informou a data atual. Essa omissão se propagou até a Etapa 3.
+"SLA sem lastro operacional" é genérica. Serviria para quase qualquer empresa.
+"Maturidade desigual" é uma inferência fraca. O número de versão mede frequência de revisão, não qualidade de gestão.
+Foco em processo, não em RAG. Recuperação de documentos quase idênticos, chunking de tabelas e cálculo feito pelo LLM não entraram, mas o prompt também não pedia.
 
 Ver também: [etapa-1-visao-geral.md](./etapa-1-visao-geral.md)
 
@@ -219,6 +231,21 @@ Some a isso o fato de que nenhum dos dois documentos declara formalmente que sub
 
 Uma mitigação natural para quando vocês montarem o assistente de discovery/atendimento: tratar documentos conflitantes sem data de vigência explícita como uma condição bloqueante (o assistente deveria se recusar a responder com um número específico e sinalizar a ambiguidade, ou perguntar a data do chamado antes de calcular), em vez de silenciosamente escolher uma versão. Isso também é, em si, uma descoberta de processo: a NovaTech precisa de um dono formal de vigência documental antes de qualquer IA poder responder com segurança sobre esse cálculo.
 ```
+**Análise crítica:**
+Pontos fortes
+
+Diff completo e correto, incluindo o que não mudou.
+Direção não uniforme das mudanças. O multiplicador regional subiu e o fator de peso caiu. É o melhor insight da etapa, e a Etapa 3 confirmou que o item 8 do FAQ usa exatamente a heurística que ele derruba.
+Mudança de mecanismo no desconto (de negociação para regra fixa), e não só de número.
+Mitigação concreta: conflito sem vigência declarada vira condição bloqueante para o assistente.
+
+Limitações
+
+Erro de temporalidade. O output afirma que a v1 vale "indefinidamente". Você corrigiu isso no risco 1 do mapa, mas não nas etapas: a Etapa 3 recebeu esse output sem correção.
+Ambiguidades da v2 que ninguém apontou:
+"5% sobre o multiplicador" pode significar ×0,95 (1,235) ou −0,05 (1,25).
+O objetivo diz "acima de 500 kg", mas a primeira faixa começa "em 500 kg".
+Dependências fora do corpus. O valor base vem de uma tabela mensal que não está no lote, e a PROC-043 está em revisão. Sem elas, o assistente não consegue calcular o frete só com esses documentos.
 
 Ver também: [etapa-2-analise-profunda.md](./etapa-2-analise-profunda.md)
 
@@ -413,6 +440,31 @@ Operações: de onde vêm os prazos de rota do item 27? O critério de R$ 50.000
 Atendentes e supervisores: quando o FAQ e o documento formal divergem, qual dos dois vocês seguem? Quem atualiza o FAQ, e com que frequência?
 
 ```
+**Análise crítica:**
+
+Resumo quantificado e limites declarados logo no início: o output avisa que POL-001 e SLA-2024 eram só metadados.
+Consequências concretas dos conflitos:
+no item 8, o preço passa a depender de o cliente reclamar;
+no item 45, quem faz de 8 a 10 fretes por mês tem o desconto negado;
+o "veja PROC-042" sem versão faria o assistente recuperar trechos das duas versões juntos.
+Olhar para o que falta. O FAQ não fala do prazo +2/+3 dias, que é o que vira promessa ao cliente.
+Validação honesta das hipóteses. Nem tudo saiu como "confirmada": há hipóteses "enfraquecidas" e "sem resposta", o que reduz o viés de confirmação.
+Ponte com o projeto. A seção 5 mostra o que o assistente responderia de errado se indexasse o FAQ com o mesmo peso das fontes formais. É onde a discovery vira decisão de ingestão.
+Achado novo: carga perigosa como cluster de risco.
+
+Limitações, agora confirmadas pelo texto completo (Anexo A)
+
+Item 38 está errado. O output diz que o processo de carga danificada "só existe no FAQ". A POL-001 §3.5 trata avaria em trânsito como devolução. O conflito real não é falta de fonte: são duas regras contraditórias (7 dias úteis pela POL-001 contra 48h pelo FAQ). O mapa corrigiu isso no risco 5.
+Item 3 era raciocínio circular. A "regra formal" vinha do próprio FAQ ("oficialmente não pode"). O Anexo A confirmou que a proibição existe (§3.2), mas a Etapa 3 não tinha como saber.
+Item 41 afirmou mais do que podia. O output diz que os números "batem com o resumo do SLA-2024", mas o resumo passado na Etapa 1 não tinha números.
+Item 27 era um palpite certeiro. A divergência com a definição de incidente crítico só foi confirmada no Anexo A (R$ 100 mil e 6h pelo SLA, contra R$ 50 mil pelo FAQ).
+
+Outras limitações
+
+"Maturidade desigual" foi dada como confirmada com outra evidência. O output usou o fato de temas só do FAQ dependerem de Jurídico e Compliance, que não é o que a hipótese dizia.
+Inconsistência interna no item 15. No resumo ele é "consistente"; na seção 4, aparece como prática sem respaldo.
+Leitura da seção 5 da v2 afetada pelo erro temporal. O output diz que o FAQ não cita a regra de transição porque "o time não conhece ou não aplica". Em 2026, a regra provavelmente já não se aplica a nada.
+Amostra enviesada. São 9 de 47 itens, provavelmente escolhidos por serem problemáticos.
 
 Ver também: [etapa-3-cruzamento-faq.md](./etapa-3-cruzamento-faq.md)
 
@@ -432,17 +484,33 @@ Ver também: [etapa-3-cruzamento-faq.md](./etapa-3-cruzamento-faq.md)
 | 6 | O SLA-2024 promete resolução em até 24h úteis para Gold (chamados gerais). Também classifica carga perigosa com irregularidade como incidente crítico, com resolução em até 4h para Gold. Etapas que dependem de terceiros, como a aprovação do Compliance (~2 dias, item 32), não cabem nesses prazos. | Violações sistemáticas de SLA nos casos que dependem de aprovação externa. Cada violação pode gerar penalidade (crédito de 5% a 10%, SLA-2024 §4) que a empresa talvez nem esteja medindo. | Perguntar: "O SLA-2024 foi validado com Operações e Compliance? Existe medição de aderência por tipo de caso (carga perigosa, sinistro, frete especial)? Chamados que dependem de aprovação externa pausam o relógio?" | Média |
 | 7 | O item 27 do FAQ usa um critério de prioridade próprio: prioridade alta para cliente Gold ou carga acima de R$ 50.000. Pelo SLA-2024 §3, incidente crítico é carga acima de R$ 100.000 com status desconhecido há mais de 6h. Os prazos de rota citados (Norte até 10 dias úteis) também não têm fonte. | Um incidente crítico pode ser classificado só como "alta", e o SLA de 30min de resposta / 4h de resolução (Gold) é descumprido. O assistente pode repetir o critério do FAQ como se fosse oficial. | Perguntar a Operações: "Qual critério o atendimento usa hoje para prioridade? 'Prioridade alta' é uma categoria diferente de 'incidente crítico' no sistema? De onde vêm os prazos de rota?" | Média |
 
-> **Nota:** os riscos 5, 6 e 7 foram verificados no texto completo da POL-001 e do SLA-2024 (Anexo A).
+Prioridade explícita.
+Risco 1 com a nuance temporal correta.
+Risco 5 reenquadrado como conflito entre duas regras.
+Risco 7 é um achado novo, com critérios comparados lado a lado.
+Risco 6 melhorado. Agora trata do SLA de resolução dos chamados, e não mais do prazo de entrega.
+Rastreabilidade. Cada afirmação cita a seção de origem.
 
-## Reflexão — progressivo vs. tudo de uma vez
- O que teria acontecido se você tivesse colado os 5 documentos completos
-de uma vez no primeiro prompt? Compare com o resultado da abordagem progressiva.
-Relacione com orçamento de atenção e context rot.
+
+## Reflexão — progressive disclosure
+A progressive disclosure funcionou melhor como método de verificação do que como método de descoberta. O maior ganho foi registrar hipóteses antes de ver o conteúdo, o que transformou cada etapa seguinte num teste. O item 45 do FAQ só teve peso de evidência porque já havia uma hipótese registrada ("FAQ como política paralela") e um diff preciso das duas versões para compará-lo. Isolar variáveis também funcionou: sem outros documentos competindo por atenção, a direção oposta das mudanças entre v1 e v2 ficou visível, e a mesma heurística ingênua apontada na Etapa 2 apareceu escrita no item 8 do FAQ.
+
+A lição mais forte, porém, veio da camada que eu não tinha planejado: a verificação no texto completo da POL-001 e do SLA-2024. Ela desmontou uma conclusão da Etapa 3. Com apenas os metadados, a análise concluiu que o processo de carga danificada "só existia no FAQ". O texto completo mostrou que a POL-001 §3.5 trata do tema, com uma regra contraditória. A conclusão anterior era plausível, bem argumentada e errada, porque a ausência de evidência no contexto foi lida como ausência de regra. Esse é exatamente o modo de falha que preciso evitar no assistente RAG: se a fonte formal não for recuperada, o modelo responde com a informal e soa confiante. Cada camada de disclosure deveria declarar não só o que foi visto, mas o que ainda não foi, e as conclusões que dependem do que não foi visto deveriam ficar marcadas como provisórias.
+
+O exercício também mostrou três custos do método.
+
+O que falta nas primeiras camadas se propaga. Não incluí datas nem status de vigência na camada de metadados, nem informei a data atual. Por isso a Etapa 2 concluiu que a v1 valeria "indefinidamente", e a Etapa 3 herdou esse erro. A primeira camada precisa trazer os campos que decidem a questão, mesmo sem o conteúdo.
+
+A disclosure incremental favorece a ancoragem. Como o modelo conhecia as hipóteses, tendeu a enquadrar os achados como confirmação. "Maturidade desigual", por exemplo, foi dada como confirmada com outra evidência. Pedir explicitamente, em cada etapa, quais hipóteses os novos dados refutam ajudou: a Etapa 3 marcou hipóteses como "enfraquecida" e "sem resposta".
+
+O estado entre as etapas precisa ser curado. Colar os outputs inteiros levou junto os erros (a v1 "indefinidamente") e muito texto. Uma lista compacta de hipóteses e achados já revisados teria interrompido a propagação.
+
+Por fim, a afirmação de que entregar tudo de uma vez teria produzido uma análise pior continua sendo hipótese, porque não rodei um controle. O próximo passo seria repetir a análise com os cinco documentos completos num único prompt e comparar. Para o projeto, o aprendizado mais útil é que o próprio assistente deveria funcionar em camadas: primeiro filtrar por metadados (vigência, tipo de fonte, versão) e depois recuperar o conteúdo, sempre com a fonte formal consultada antes da informal. Foi a falta dessa ordem que tornou possível tanto o erro do item 45 no FAQ quanto o meu próprio erro sobre o item 38.
 
 ## Entregável
 
 - [x] Estratégia de contexto documentada (acima)
 - [x] 3 prompts com outputs (arquivos separados desta pasta)
-- [ ] Análise crítica de cada etapa
-- [ ] Reflexão sobre progressive disclosure
+- [x] Análise crítica de cada etapa
+- [x] Reflexão sobre progressive disclosure
 - [x] Mapa de riscos (mínimo 2 itens)
