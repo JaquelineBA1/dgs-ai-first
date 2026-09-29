@@ -10,6 +10,12 @@ assistente de IA, cobrindo o caminho principal e os caminhos de exceção
 (fallback e feedback), além de guardrails de comportamento específicos ao
 domínio da NovaTech.
 
+1. Usando o **Claude**, elabore a jornada do atendente em formato de texto estruturado, incluindo:
+   - O fluxo principal: atendente recebe dúvida → consulta o assistente → recebe resposta com fonte → usa no atendimento.
+   - O fluxo de fallback: o que acontece quando o assistente não tem confiança na resposta ou quando o atendente discorda.
+   - O fluxo de feedback: como o atendente sinaliza que uma resposta estava errada, desatualizada ou incompleta.
+   - Ao menos 2 guardrails de comportamento do assistente (ex: "nunca inventar um prazo que não esteja documentado").
+
 ## Jornada textual
 
 ### 1. Fluxo principal (caminho feliz)
@@ -113,7 +119,7 @@ lote.
 
 **Prompt utilizado no Claude:**
 ```
-<!--Sou o Product Specialist do projeto de assistente de IA da NovaTech (empresa de
+Sou o Product Specialist do projeto de assistente de IA da NovaTech (empresa de
 logística). Já concluímos a fase de discovery e agora preciso mapear a jornada do
 atendente usando esse assistente.
 
@@ -147,12 +153,12 @@ FAQ sem validação formal).
 
 Depois de gerar a primeira versão, quero que você mesmo aponte se algum dos fluxos
 ficou incompleto ou genérico demais, para eu poder refinar antes de passar isso
-para o Claude Design. -->
+para o Claude Design.
 ```
 
 **Output obtido:**
 ```
-<!-- Jornada do Atendente com o Assistente de IA — NovaTech
+Jornada do Atendente com o Assistente de IA — NovaTech
 1. Fluxo principal (caminho feliz)
 
 O atendente recebe a dúvida do cliente (chat, telefone ou e-mail) e já a reconhece dentro de uma das categorias mapeadas no discovery — prazo de entrega, regra de frete, devolução ou outros. Em vez de decidir sozinho qual das 4 fontes hoje consultadas é a certa, ele abre o assistente (idealmente embutido na mesma tela de atendimento, não uma ferramenta à parte) e digita a pergunta em linguagem natural, como faria com um colega mais experiente.
@@ -195,12 +201,13 @@ A cadência de revisão da fila de feedback ("periodicamente") e o dono dessa fi
 
 O bucket "outros" (20% das dúvidas, quase tão grande quanto devolução) não tem nenhum fluxo dedicado — a jornada trata só de prazo, frete e devolução porque foram os únicos temas em que já investigamos problemas de documentação. Isso é uma lacuna real: um quinto dos chamados está sem cobertura nenhuma na jornada.
 
-Por fim, os guardrails cobrem muito bem frete especial e FAQ/carga perigosa, porque são os dois pontos que já investigamos a fundo — mas "prazos de entrega" é a maior categoria de dúvida (35%) e não tem nenhum guardrail específico, simplesmente porque ainda não analisamos se a documentação de prazos tem os mesmos problemas de versionamento que achamos no frete. Vale considerar isso prioridade para a próxima rodada de análise documental antes de fechar a jornada. -->
+Por fim, os guardrails cobrem muito bem frete especial e FAQ/carga perigosa, porque são os dois pontos que já investigamos a fundo — mas "prazos de entrega" é a maior categoria de dúvida (35%) e não tem nenhum guardrail específico, simplesmente porque ainda não analisamos se a documentação de prazos tem os mesmos problemas de versionamento que achamos no frete. Vale considerar isso prioridade para a próxima rodada de análise documental antes de fechar a jornada. 
 ```
 
 ## Diagrama visual (Claude Design)
+2. Usando o **Claude Design**, transforme a jornada textual em um diagrama visual de fluxo que mostre os 3 caminhos (principal, fallback, feedback) de forma clara para apresentar ao time e ao cliente.
 
-![Diagrama de fluxo do atendente](./jornada-atendente-ia.png)
+[Diagrama de fluxo do atendente](./jornada-atendente-ia.png)
 ## Entregável
 
 - [x] Jornada textual (fluxo principal, fallback, feedback, guardrails)
