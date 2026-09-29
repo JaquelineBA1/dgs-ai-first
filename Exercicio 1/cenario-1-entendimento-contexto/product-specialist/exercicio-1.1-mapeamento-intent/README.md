@@ -227,58 +227,70 @@ Ver também: [etapa-2-analise-profunda.md](./etapa-2-analise-profunda.md)
 **Prompt utilizado:**
 ```
 Aqui está a análise de inconsistências que fizemos entre PROC-042 v1 e v2, e o mapa
-de temas da primeira etapa. Agora seguem as 8 perguntas do FAQ-Atendimento
-completo. Cruze as informações: onde o FAQ reforça, contradiz ou complementa o que
-já identificamos? Que práticas aparecem no FAQ sem respaldo em nenhum documento
-formal?
-[output da etapa 1 -  Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
+de temas da primeira etapa. Agora seguem as 9 perguntas do FAQ-Atendimento
+completo. Cruze as informações: onde o FAQ reforça, contradiz ou complementa o que já identificamos? Que práticas aparecem no FAQ sem respaldo em nenhum documento formal?
+
+[output da etapa 1 - Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
+
 Mapa de temas cobertos
+
 Os cinco documentos cobrem quatro áreas temáticas, mas de forma desigual: devolução de mercadorias (POL-001), precificação de frete especial (PROC-042 e sua revisão), compromissos de atendimento por tier de cliente (SLA-2024), e práticas informais de suporte (FAQ-Atendimento). Note que há uma sobreposição de dono entre Comercial e Operações (frete é Comercial, devolução é Operações, SLA é dos dois), o que já sinaliza que o processo ponta a ponta atravessa mais de uma diretoria sem que nenhum documento pareça ser o "dono" da jornada completa do cliente.
+
 Hipóteses de gaps e riscos
+
 Governança de versões: PROC-042 existe em duas versões formalmente distintas (v1.0 e v2.0) catalogadas como documentos separados, não como histórico de um único documento. Isso sugere hipótese de risco real: pode não haver processo claro de deprecação, e times diferentes (ou sistemas/planilhas antigas) podem ainda estar usando a v1.0 sem saber que foi revisada. Vale perguntar na entrevista o que motivou a revisão — erro de cálculo, reclamação de cliente, mudança de mercado — porque isso costuma revelar o problema real que gerou a v2.0.
+
 Fronteira entre devolução e frete especial: POL-001 trata de devolução de mercadorias em geral, e PROC-042 trata de frete para cargas acima de 500kg, mas nenhum título sugere uma política de logística reversa para cargas pesadas — ou seja, o que acontece quando uma carga de 600kg precisa ser devolvida? Quem calcula o frete de retorno, e sob qual regra? Isso é um gap clássico de fronteira entre políticas de diretorias diferentes, e tende a aparecer como "zona cinzenta" que cada área resolve do seu jeito.
+
 SLA sem lastro operacional visível: SLA-2024 promete prazos de resposta/resolução por tier, mas nenhum dos outros documentos parece amarrar explicitamente os prazos internos das operações (aprovação de devolução, recálculo de frete) a esses SLAs. Hipótese: o SLA pode ter sido definido pelo Comercial como promessa comercial sem validação plena da capacidade operacional de cumpri-lo — um risco comum quando o dono é uma junção de duas diretorias em vez de uma área única de processo.
+
 Segmentação de cliente não documentada à parte: SLA-2024 depende de "tipo de cliente"/tier, mas não há, entre os cinco documentos, um documento que defina os critérios dessa segmentação. Pode existir em outro lugar (CRM, contrato) — vale confirmar, porque se não existir formalmente, o SLA pode estar sendo aplicado de forma subjetiva.
+
 FAQ-Atendimento como "política paralela": este é provavelmente o ponto de maior risco do lote. É o único documento sem dono formal, sem controle de versão, colaborativo — ou seja, é onde moram as exceções, os atalhos e o conhecimento tácito do time de suporte. Hipótese forte: o FAQ provavelmente contradiz ou complementa POL-001 e SLA-2024 em pontos que a diretoria não sabe que existem — é comum esse tipo de documento carregar a "política real" usada no dia a dia, criada para preencher lacunas dos documentos formais. Isso é ouro para a discovery, mas também é o maior risco de compliance/inconsistência com o cliente.
+
 Maturidade desigual entre documentos: POL-001 já está na v3.1 (bastante amadurecida), enquanto PROC-042 está apenas na v2.0 e o FAQ nem tem controle de versão. Isso sugere que a organização tem disciplina de gestão documental na área de Operações (retorno/devolução), mas menos disciplina em Comercial e nenhuma em Atendimento — um padrão que vale confirmar na entrevista, pois costuma refletir onde estão os processos mais maduros de verdade.
+
 Perguntas sugeridas para a discovery
+
 Vale perguntar diretamente: o que mudou entre PROC-042 v1.0 e v2.0, e a v1.0 ainda circula em algum lugar? Existe algum caso de devolução de carga >500kg, e qual documento rege o frete desse retorno? O SLA foi validado com quem executa (Operações) antes de publicado, e existe medição real de aderência a ele? Quanto do que está no FAQ diverge do que está em POL-001 ou SLA-2024 — e há casos em que o time de suporte segue o FAQ sabendo que contraria a política formal?
+
 Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.]
 
-[output da etapa 2 - # PROC-042-v2 — Procedimento de Cálculo de Frete Especial (Revisado)
-**Versão:** 2.0
-**Data de emissão:** 10/11/2023
-**Responsável:** Diretoria Comercial
-**Status:** Este documento não possui indicação formal de que substitui o PROC-042 v1. Ambos coexistem no SharePoint sem hierarquia clara.
-## 1. Objetivo
-Definir a fórmula e os parâmetros atualizados para cálculo de frete especial aplicável a cargas com peso acima de 500kg. Os multiplicadores foram revisados para refletir os custos operacionais atualizados de cada região.
-## 2. Fórmula de cálculo
-O frete especial é calculado como:
-Valor do frete = Valor base × Multiplicador regional × Fator de peso
-Onde:
-- Valor base = tarifa publicada na tabela mensal de fretes.
-- Multiplicador regional = fator aplicado conforme a região de destino (seção 2.1).
-- Fator de peso = 1.0 para cargas de 500kg a 1.000kg; 1.15 para cargas de 1.001kg a 3.000kg; 1.4 para cargas acima de 3.000kg.
-### 2.1. Multiplicadores regionais (atualizados em novembro/2023)
-| Região | Multiplicador |
-|--------|--------------|
-| Sul | 1.3 |
-| Sudeste | 1.1 |
-| Centro-Oeste | 1.4 |
-| Nordeste | 1.5 |
-| Norte | 1.8 |
-## 3. Prazo de entrega para frete especial
-O prazo de entrega para frete especial é calculado como o prazo padrão da rota + 3 dias úteis adicionais para manuseio e roteirização de carga pesada (anteriormente era + 2 dias na versão anterior).
-## 4. Condições especiais
-- Cargas acima de 5.000kg requerem aprovação prévia do gerente de operações regional.
-- Cargas perigosas com peso acima de 500kg seguem tabela específica (PROC-043: Frete de Cargas Perigosas). Nota: a PROC-043 está em processo de revisão pelo Compliance e pode sofrer alterações.
-- Descontos de volume: a partir de 8 fretes especiais/mês para o mesmo cliente, aplicar desconto de 5% sobre o multiplicador regional. Acima de 15 fretes/mês, desconto de 10%. Descontos maiores requerem aprovação da Diretoria Comercial.
-## 5. Disposições transitórias
-Durante o período de transição, chamados abertos antes de 01/12/2023 que ainda estejam em processamento devem usar os multiplicadores da versão anterior (PROC-042 v1). Chamados novos a partir de 01/12/2023 devem usar os multiplicadores desta versão.] -->]
-[FAQ-Atendimento completo, os 8 itens - 
+[output da etapa 2 - Inconsistências identificadas entre PROC-042 v1.0 e v2.0
+Item    v1.0 (03/03/2023)    v2.0 (10/11/2023)    Direção da mudança
+Fator de peso — 1.001kg a 3.000kg    1,2    1,15    queda
+Fator de peso — acima de 3.000kg    1,5    1,4    queda
+Multiplicador regional — Sul    1,2    1,3    alta
+Multiplicador regional — Sudeste    1,0    1,1    alta
+Multiplicador regional — Centro-Oeste    1,3    1,4    alta
+Multiplicador regional — Nordeste    1,4    1,5    alta
+Multiplicador regional — Norte    1,6    1,8    alta
+Prazo adicional para carga pesada    +2 dias úteis    +3 dias úteis    alta
+Desconto por volume — gatilho    >10 fretes/mês, negociado caso a caso, via aditivo contratual    ≥8 fretes/mês → 5% sobre o multiplicador regional; >15 fretes/mês → 10%    mudança de natureza (negociação → regra fixa), não só de número
+Nota sobre PROC-043 (cargas perigosas)    Não existe    Adverte que a PROC-043 está em revisão pelo Compliance    só existe na v2
+Regra de transição (seção 5)    Não existe    Chamados abertos antes de 01/12/2023 usam multiplicadores da v1; a partir dessa data, usam a v2    só existe na v2
 
-```markdown
-# FAQ-Atendimento — Perguntas Frequentes do Time de Suporte
+Ficaram iguais entre as duas versões: a estrutura da fórmula (Valor base × Multiplicador regional × Fator de peso), as faixas de peso (500–1.000kg / 1.001–3.000kg / acima de 3.000kg — só os multiplicadores dentro delas mudaram), e a exigência de aprovação prévia para cargas acima de 5.000kg.
+
+Risco de um assistente de IA misturar as duas versões
+
+Eu classificaria esse risco como alto, e por motivos bem específicos ao conteúdo, não apenas porque "existem duas versões":
+
+Os números são próximos o suficiente para não soarem um erro. 1,2 vs. 1,3, ou 1,4 vs. 1,5, são o tipo de diferença que passa despercebida numa resposta gerada — diferente de um erro grosseiro que o próprio texto entregaria como incoerente. Um assistente pode compor uma resposta plausível e internamente "sem contradições visíveis" mesmo pegando o multiplicador regional da v2 com o fator de peso da v1, por exemplo.
+
+A direção da mudança não é uniforme. O multiplicador regional subiu na v2, mas o fator de peso caiu. Se o assistente usar uma heurística ingênua do tipo "a versão mais recente costuma ter valores mais altos, então valores mais altos = mais atual", ele vai acertar o multiplicador regional e errar o fator de peso (ou vice-versa) — produzindo um cálculo que nunca existiu em nenhuma das duas versões.
+
+O desconto por volume não é só uma mudança de número, é uma mudança de mecanismo: de negociação caso a caso (v1) para regra percentual automática (v2). Misturar aqui é o pior cenário: por exemplo, aplicar o gatilho de 8 fretes/mês (v2) mas tratar como "precisa de aditivo contratual" (v1), ou aplicar desconto de 5% a partir de 10 fretes (mistura de limiar v1 com percentual v2) — nenhuma combinação híbrida corresponde a uma regra real da empresa.
+
+O prazo de entrega (+2 vs. +3 dias) é uma promessa direta ao cliente. Um erro aqui vira risco de SLA descumprido ou de expectativa incorreta passada ao cliente — não é um erro só "interno".
+
+O ponto mais crítico, porém, é a seção 5 da v2 (disposições transitórias). Ela informa que a resposta correta não depende apenas de "qual versão é a vigente", mas da data de abertura do chamado: chamados abertos antes de 01/12/2023 e ainda em processamento devem usar os multiplicadores da v1. Isso significa que mesmo um assistente que identificasse corretamente "a v2 é a mais nova, devo usar ela" ainda estaria errado para uma parcela dos casos reais — a v1 continua sendo a resposta certa em determinadas situações, indefinidamente, até que esses chamados antigos se encerrem (não há data-limite para isso). Nenhum dos dois documentos, isoladamente, resolve completamente a pergunta "qual multiplicador eu uso agora" sem essa terceira variável (data de abertura do chamado).
+
+Some a isso o fato de que nenhum dos dois documentos declara formalmente que substitui o outro — ambos dizem textualmente que coexistem sem hierarquia clara no SharePoint. Isso é o cenário clássico de risco em base de conhecimento para IA (RAG): uma busca por "cálculo de frete especial" tende a recuperar as duas versões como igualmente relevantes (títulos quase idênticos, mesma estrutura, mesmo objetivo), e sem um sinal de metadado do tipo "vigente/obsoleto", o modelo não tem como discriminar sozinho — ele pode responder combinando trechos de ambas sem perceber, especialmente se a pergunta do usuário não mencionar a data do chamado.
+
+Uma mitigação natural para quando vocês montarem o assistente de discovery/atendimento: tratar documentos conflitantes sem data de vigência explícita como uma condição bloqueante (o assistente deveria se recusar a responder com um número específico e sinalizar a ambiguidade, ou perguntar a data do chamado antes de calcular), em vez de silenciosamente escolher uma versão. Isso também é, em si, uma descoberta de processo: a NovaTech precisa de um dono formal de vigência documental antes de qualquer IA poder responder com segurança sobre esse cálculo.]
+
+[FAQ-Atendimento completo - # FAQ-Atendimento — Perguntas Frequentes do Time de Suporte
 
 **Versão:** Não controlada
 **Última atualização:** Diversas (documento colaborativo)
@@ -321,29 +333,7 @@ Atendente não tem autonomia para dar desconto. Para clientes com mais de 10 fre
 ```
 Cruzamento FAQ × documentos formais
 
-Antes de entrar no detalhe: dos cinco documentos, só temos o conteúdo completo de PROC-042 v1/v2. POL-001 e SLA-2024 continuam sendo só metadados. Então, onde o FAQ toca esses dois, o que dá para fazer é comparar com o tema declarado (o resumo de uma linha), não com regras específicas — vou marcar isso claramente item a item.
 
-Item do FAQ	Tema	Relação com o que já mapeamos	O que isso revela
-3 — devolução de carga perigosa	Cruza POL-001 (devolução) + PROC-043 (não está no nosso lote)	Sem respaldo formal	"Oficialmente não pode, mas Riscos já autorizou exceção" — é uma prática de exceção via um canal (ramal 4500, Gestão de Riscos) que não aparece em nenhum dos 5 documentos. Confirma a hipótese da "fronteira devolução × carga especial" do mapa inicial, só que pior: a exceção já existe na prática, sem nenhuma regra escrita sobre quando ela se aplica.
-8 — frete especial	PROC-042 v1/v2	Contradiz/confirma o risco que já apontamos	O FAQ reconhece as duas versões e instrui "na dúvida, use a mais recente (v2)" — exatamente a heurística ingênua que eu tinha sinalizado como perigosa na etapa anterior, porque ignora a regra de transição da seção 5 (que depende da data do chamado, não de "qual é mais nova"). Além disso, introduz um critério novo que não está em nenhuma das duas versões: "se o cliente reclamar, pode ser que o contrato dele ainda esteja na tabela antiga" — ou seja, um critério por data do contrato, diferente do critério oficial por data de abertura do chamado. Isso é uma terceira regra, não documentada, inventada para tapar um buraco.
-15 — tier Platinum	SLA-2024 (só metadados)	Complementa (primeira info real sobre tiers)	Primeira confirmação do conteúdo de SLA-2024: tiers são Gold, Silver, Standard. Mas também revela um programa de fidelidade descontinuado em 2022 que ainda gera confusão de cliente — artefato histórico sem nenhum documento de encerramento formal entre os 5.
-22 — seguro de carga	Nenhum documento do lote	Sem respaldo documental nenhum	Tema inteiro (seguro de carga, 0,3%/0,8%) não aparece em nenhum título do nosso lote. E de novo aparece o padrão "contratos antigos podem ter percentual diferente, confirme com o Comercial" — mesmo problema de regra que muda no tempo sem registro formal de transição.
-27 — tracking parado	Toca SLA-2024 e frete geral, mas não é coberto por PROC-042 (que só trata frete especial >500kg)	Sem respaldo direto	Critério de priorização por valor de carga (>R$ 50.000) e por tier (Gold) para abrir chamado de rastreamento não está em nenhum documento formal que temos. Prazos regionais de trânsito (Norte até 10 dias, Sul/Sudeste "estranho" acima de 3) também não aparecem em nenhum título do lote.
-32 — carga perigosa + frete expresso	Toca PROC-042 (menção à PROC-043) e implicitamente SLA-2024 (promessa de "expresso")	Reforça a hipótese "SLA sem lastro operacional"	O atendente já reconhece que a autorização de Compliance leva ~2 dias, tornando o "expresso" não expresso. É a primeira evidência concreta de que o compromisso comercial pode estar descolado da capacidade operacional real — hipótese que eu tinha levantado só como suspeita na etapa 1.
-38 — carga danificada / sinistro	POL-001 é sobre devolução; isto é um processo distinto	Sem respaldo documental nenhum	Processo de sinistro (prazo de 48h, laudo, reembolso integral, encaminhado ao Jurídico via e-mail) é um processo inteiro que não parece coberto por POL-001 nem por nenhum outro documento do lote. Se POL-001 trata só de devolução "normal", carga danificada em trânsito pode ser uma lacuna real de política, não só de FAQ.
-41 — SLA resposta vs. resolução	SLA-2024 (só metadados)	Complementa (primeiros números reais do SLA)	Confirma os tiers do item 15 e dá números específicos (Gold 2h/24h, Silver 4h/48h, Standard 8h/72h) supostamente vindos da "tabela SLA-2024". Não temos como validar contra o documento oficial ainda — é a palavra do FAQ sobre o FAQ, por assim dizer.
-45 — desconto no frete	PROC-042 v1/v2	Contradição confirmada e mais grave do lote	O FAQ diz "mais de 10 fretes especiais/mês... desconto automático na tabela". O limiar ">10" é da v1 — mas a v1 não tem desconto automático em tabela, tem negociação caso a caso via aditivo contratual. O desconto automático em tabela é da v2 — mas lá o limiar é "a partir de 8", não "mais de 10". Ou seja, o FAQ já mistura as duas versões numa única resposta, pegando o número de uma e o mecanismo da outra — exatamente o modo de falha que eu tinha descrito como risco hipotético de IA na etapa anterior. Aqui ele já está acontecendo, feito por humanos, documentado por escrito.
-Padrão sistêmico que atravessa vários itens
-
-Um padrão se repete em pelo menos três pontos independentes do FAQ — frete especial (item 8: contrato antigo x tabela nova), seguro de carga (item 22: contratos anteriores a 2023 com percentual diferente) e tier de fidelidade (item 15: programa descontinuado em 2022 ainda causa confusão). Em todos os três, existe uma mudança de regra ao longo do tempo sem uma política formal de transição/grandfathering documentada — a única exceção parcial é a seção 5 da PROC-042 v2, que pelo menos tenta formalizar uma regra de transição (por data de chamado), mas que o próprio FAQ já reinterpreta incorretamente (por data de contrato, no item 8). Isso sugere que "regra muda, mas ninguém documenta como tratar o que já estava em andamento" pode ser um problema estrutural da NovaTech, não um incidente isolado da PROC-042.
-
-O achado mais importante para levar à entrevista
-
-O item 45 merece destaque isolado: não é uma hipótese de risco de IA, é uma inconsistência real e já materializada em um documento usado por humanos todos os dias. Isso muda o enquadramel da discovery — a pergunta não é mais "um assistente de IA poderia misturar as versões?", é "o time de atendimento já mistura as versões, e há quanto tempo isso afeta clientes reais?". Vale perguntar: quantos descontos já foram concedidos com base nesse critério híbrido do item 45, e existe alguma auditoria retroativa desses casos?
-
-Perguntas adicionais para a discovery
-
-Além das perguntas da etapa 1, valeria acrescentar: quem no Compliance/Gestão de Riscos tem autoridade formal para autorizar exceções de devolução de carga perigosa, e essa autoridade está documentada em algum lugar fora do FAQ? Existe uma política de seguro de carga formalizada, e por que ela não está entre os documentos já levantados? O processo de sinistro por carga danificada é tratado como parte da política de devolução (POL-001) ou é reconhecido pela empresa como um processo distinto — e nesse caso, existe uma política própria? Os critérios de priorização de chamados por valor de carga e por tier (item 27) vêm de algum documento oficial de operações, ou são um critério que o próprio time de atendimento criou com o tempo? E, por fim: quando o item 45 foi escrito no FAQ, isso foi antes ou depois da v2 da PROC-042 — ou seja, o FAQ nunca foi atualizado desde a revisão, ou foi atualizado errado?
 ```
 
 Ver também: [etapa-3-cruzamento-faq.md](./etapa-3-cruzamento-faq.md)
