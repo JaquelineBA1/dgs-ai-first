@@ -11,43 +11,144 @@ Esta especificação traduz os riscos já identificados no discovery — duas ve
 Cobrir os 5 pontos abaixo:
 
 1. **Fontes a indexar (e o que excluir/marcar como obsoleto):**
-   <!-- ... -->
+A regra não é "excluir obsoletos", porque hoje nenhum documento declara se está obsoleto. A base indexa apenas documentos com metadados completos, e o status de vigência é decidido pelo dono, nunca inferido pela data.
+Metadados obrigatórios por documento. Todo documento indexado deve ter: ID, título, versão, data de emissão ou atualização, status, tipo de fonte, área dona e relação com outras versões.
+• Status possíveis: vigente, vigência não confirmada, em revisão, obsoleto.
+• Tipo de fonte: normativo, contratual ou informal, conforme a "Classificação" no cabeçalho do documento.
+Nada entra ou some em silêncio. Documento com extração de texto falha (ex.: PDF escaneado) ou sem metadados não é indexado e aparece no relatório de ingestão.
+
 2. **Tratamento de documentos contraditórios:**
-   <!-- ex: como lidar com PROC-042 v1 vs v2 -->
+O assistente aplica a regra de transição quando o documento a define, e mostra as duas versões quando não define. "Usar sempre a mais recente" está descartado: contradiz a PROC-042-v2, seção 5.
+Detectar o conflito. Quando os trechos recuperados vêm de versões diferentes do mesmo documento, ou de fontes que dizem coisas diferentes sobre o mesmo item, o assistente deve entrar em "modo conflito" e avisar o atendente.
+• Aceite: para "Qual o multiplicador para o Sudeste?", a resposta sinaliza que a v1 diz 1.0 e a v2 diz 1.1.
+
+Nunca misturar versões num cálculo. Multiplicador, fator de peso e prazo adicional de uma mesma resposta vêm da mesma versão.
+• Aceite: para 2.000 kg ao Sudeste em chamado novo, nenhuma resposta combina 1.1 (v2) com 1.2 (v1). Teste da armadilha 1 do Anexo B.
+Documento oficial prevalece sobre o FAQ. Havendo divergência entre um documento normativo ou contratual e o FAQ, vale o oficial, e a divergência é mostrada.
+• Casos: FAQ-45 ("desconto automático acima de 10 fretes") × PROC-042-v2, seção 4 (5% a partir de 8). FAQ-38 (registro em 48h, Jurídico) × POL-001, seção 3.5 (avaria em trânsito é devolução sem custo).
+• Aceite: nos dois casos, a resposta abre com a regra oficial e cita o FAQ apenas como divergência.
+CON-06. Todo conflito vira registro. Cada conflito detectado é registrado com as fontes envolvidas e enviado à curadoria, para a área dona decidir.
+• Aceite: após rodar o conjunto de testes da seção 7, o registro contém os conflitos PROC-042 × v2 e FAQ-45 × v2.
+A hierarquia entre documento normativo e contratual, se os dois se contradisserem, ainda não está definida (pergunta em aberto).
+
 3. **Comportamento quando não há resposta na base:**
-   <!-- dizer "não encontrei" vs. tentar responder com conhecimento geral -->
-4. **Requisitos de atualização:**
-   <!-- prazo máximo entre publicação de um documento novo e disponibilidade no assistente -->
-5. **Requisitos de rastreabilidade:**
-   <!-- toda resposta deve citar fonte? mostrar o trecho relevante? -->
+   Quando a base não responde, o assistente diz "não encontrei", explica o que achou de mais próximo e por que não serve, e sugere escalar ao supervisor. Ele nunca completa a resposta com conhecimento geral. O mesmo vale para três casos que parecem ter resposta, mas não têm: cobertura parcial, documento fora da base e premissa falsa.
+   Quando a base não responde, o assistente diz "não encontrei", explica o que achou de mais próximo e por que não serve, e sugere escalar ao supervisor. Ele nunca completa a resposta com conhecimento geral. O mesmo vale para três casos que parecem ter resposta, mas não têm: cobertura parcial, documento fora da base e premissa falsa.
+SR-01. Limite do conhecimento geral. O modelo pode usar conhecimento geral para entender a pergunta e redigir a resposta. Ele não pode usá-lo para regras, prazos, valores, percentuais, contatos ou procedimentos da NovaTech. Toda inferência que não está num trecho deve ser declarada.
+• Caso: "Manaus" → região Norte não está em nenhum documento. A resposta diz "considerando Manaus na região Norte" para o atendente confirmar.
+• Aceite: em todo o conjunto de testes, nenhum prazo, valor ou contato aparece sem estar num trecho citado (verificado por RA-03).
+SR-02. Resposta padrão de "não encontrei". Deve conter: (a) a frase explícita de que não encontrou; (b) o documento mais próximo, se houver, e por que não se aplica; (c) a sugestão de escalar ao supervisor (guardrail 3).
+• Aceite: para "Frete para 300 kg para Salvador?", a resposta tem os três elementos e nenhum valor.
+SR-03. Cobertura parcial conta como "não encontrado". Um trecho parecido, mas fora do escopo que o próprio documento declara, não autoriza resposta.
+• Caso: a PROC-042-v2 vale para cargas acima de 500 kg (seção 1). O trecho PROC-042v2-B aparece para 300 kg (mapa de cobertura do Anexo B), mas não se aplica.
+• Aceite: nenhum multiplicador da PROC-042 aparece em resposta sobre carga até 500 kg. Teste da armadilha 5 do Anexo B.
+SR-04. Documento citado, mas fora da base. Quando um trecho remete a outro documento que não está indexado, o assistente informa o nome do documento e que ele não está disponível.
+• Casos: carga perigosa acima de 500 kg → PROC-043 (PROC-042-v2, seção 4). Mercadoria em trânsito → PROC-088 (POL-001, seção 2).
+• Aceite: para frete de carga perigosa de 800 kg, a resposta não aplica os multiplicadores gerais e cita a PROC-043 como fora da base.
+SR-05. Premissa falsa é corrigida, não respondida. Se a pergunta traz algo que a base desmente, o assistente corrige a premissa com a fonte.
+• Caso: "Qual o SLA do cliente Platinum?" → a SLA-2024, seção 1, diz que só existem Gold, Silver e Standard.
+• Aceite: nenhuma resposta atribui SLA a um tier inexistente. Teste da armadilha 3 do Anexo B.
+
+5. **Requisitos de atualização:**
+ A atualização é automática, tem prazo contado a partir da publicação na fonte e vale também para retiradas. Operações, Compliance e Comercial publicam todo mês, e o Confluence muda toda semana: sem prazo, o assistente responde com a versão anterior sem ninguém perceber.
+
+7. **Requisitos de rastreabilidade:**
+  Toda resposta cita a fonte e mostra o trecho literal, e todo número da resposta tem de estar no trecho citado. Isso permite ao atendente conferir em segundos (etapa P5 da jornada) e ao QA verificar de forma automática.
+Citação completa em toda resposta com regra. Toda resposta que traz regra, prazo, valor ou contato cita: documento, versão, data, seção e tipo de fonte.
 
 ## Iteração com o Claude
 
 **Prompt para revisão da v1:**
 ```
-<!-- Preciso de uma especificação de requisitos de produto (não técnica, mas
-precisa) para o pipeline de RAG do assistente de atendimento da NovaTech.
-Cubra exatamente estes 5 pontos, usando os achados reais do nosso caso como
-referência:
+laude, revise esta versão do documento de requisitos V1.
 
-1. Quais fontes de dados devem ser indexadas, e o que deve ser excluído ou
-   marcado como obsoleto.
-2. Como o assistente deve lidar com documentos contraditórios (ex: duas
-   versões de um mesmo procedimento, como o PROC-042 v1 e v2).
-3. Qual o comportamento esperado quando a pergunta do atendente não tem
-   resposta na base.
-4. Requisitos de atualização — em quanto tempo um documento novo publicado
-   deve estar disponível no assistente.
-5. Requisitos de rastreabilidade — se toda resposta deve citar a fonte e
-   mostrar o trecho relevante.
+## Especificação — versão inicial (v1)
 
-Cada requisito precisa ser testável, para que o QA consiga verificar se foi
-atendido. -->
+Cobrir os 5 pontos abaixo:
+
+**Fontes a indexar (e o que excluir/marcar como obsoleto):**
+A regra não é "excluir obsoletos", porque hoje nenhum documento declara se está obsoleto. A base indexa apenas documentos com metadados completos, e o status de vigência é decidido pelo dono, nunca inferido pela data.
+Metadados obrigatórios por documento. Todo documento indexado deve ter: ID, título, versão, data de emissão ou atualização, status, tipo de fonte, área dona e relação com outras versões.
+• Status possíveis: vigente, vigência não confirmada, em revisão, obsoleto.
+• Tipo de fonte: normativo, contratual ou informal, conforme a "Classificação" no cabeçalho do documento.
+Nada entra ou some em silêncio. Documento com extração de texto falha (ex.: PDF escaneado) ou sem metadados não é indexado e aparece no relatório de ingestão.
+
+**Tratamento de documentos contraditórios:**
+O assistente aplica a regra de transição quando o documento a define, e mostra as duas versões quando não define. "Usar sempre a mais recente" está descartado: contradiz a PROC-042-v2, seção 5.
+Detectar o conflito. Quando os trechos recuperados vêm de versões diferentes do mesmo documento, ou de fontes que dizem coisas diferentes sobre o mesmo item, o assistente deve entrar em "modo conflito" e avisar o atendente.
+• Aceite: para "Qual o multiplicador para o Sudeste?", a resposta sinaliza que a v1 diz 1.0 e a v2 diz 1.1.
+
+Nunca misturar versões num cálculo. Multiplicador, fator de peso e prazo adicional de uma mesma resposta vêm da mesma versão.
+• Aceite: para 2.000 kg ao Sudeste em chamado novo, nenhuma resposta combina 1.1 (v2) com 1.2 (v1). Teste da armadilha 1 do Anexo B.
+Documento oficial prevalece sobre o FAQ. Havendo divergência entre um documento normativo ou contratual e o FAQ, vale o oficial, e a divergência é mostrada.
+• Casos: FAQ-45 ("desconto automático acima de 10 fretes") × PROC-042-v2, seção 4 (5% a partir de 8). FAQ-38 (registro em 48h, Jurídico) × POL-001, seção 3.5 (avaria em trânsito é devolução sem custo).
+• Aceite: nos dois casos, a resposta abre com a regra oficial e cita o FAQ apenas como divergência.
+CON-06. Todo conflito vira registro. Cada conflito detectado é registrado com as fontes envolvidas e enviado à curadoria, para a área dona decidir.
+• Aceite: após rodar o conjunto de testes da seção 7, o registro contém os conflitos PROC-042 × v2 e FAQ-45 × v2.
+A hierarquia entre documento normativo e contratual, se os dois se contradisserem, ainda não está definida (pergunta em aberto).
+
+**Comportamento quando não há resposta na base:**
+Quando a base não responde, o assistente diz "não encontrei", explica o que achou de mais próximo e por que não serve, e sugere escalar ao supervisor. Ele nunca completa a resposta com conhecimento geral. O mesmo vale para três casos que parecem ter resposta, mas não têm: cobertura parcial, documento fora da base e premissa falsa.
+Quando a base não responde, o assistente diz "não encontrei", explica o que achou de mais próximo e por que não serve, e sugere escalar ao supervisor. Ele nunca completa a resposta com conhecimento geral. O mesmo vale para três casos que parecem ter resposta, mas não têm: cobertura parcial, documento fora da base e premissa falsa.
+SR-01. Limite do conhecimento geral. O modelo pode usar conhecimento geral para entender a pergunta e redigir a resposta. Ele não pode usá-lo para regras, prazos, valores, percentuais, contatos ou procedimentos da NovaTech. Toda inferência que não está num trecho deve ser declarada.
+• Caso: "Manaus" → região Norte não está em nenhum documento. A resposta diz "considerando Manaus na região Norte" para o atendente confirmar.
+• Aceite: em todo o conjunto de testes, nenhum prazo, valor ou contato aparece sem estar num trecho citado (verificado por RA-03).
+SR-02. Resposta padrão de "não encontrei". Deve conter: (a) a frase explícita de que não encontrou; (b) o documento mais próximo, se houver, e por que não se aplica; (c) a sugestão de escalar ao supervisor (guardrail 3).
+• Aceite: para "Frete para 300 kg para Salvador?", a resposta tem os três elementos e nenhum valor.
+SR-03. Cobertura parcial conta como "não encontrado". Um trecho parecido, mas fora do escopo que o próprio documento declara, não autoriza resposta.
+• Caso: a PROC-042-v2 vale para cargas acima de 500 kg (seção 1). O trecho PROC-042v2-B aparece para 300 kg (mapa de cobertura do Anexo B), mas não se aplica.
+• Aceite: nenhum multiplicador da PROC-042 aparece em resposta sobre carga até 500 kg. Teste da armadilha 5 do Anexo B.
+SR-04. Documento citado, mas fora da base. Quando um trecho remete a outro documento que não está indexado, o assistente informa o nome do documento e que ele não está disponível.
+• Casos: carga perigosa acima de 500 kg → PROC-043 (PROC-042-v2, seção 4). Mercadoria em trânsito → PROC-088 (POL-001, seção 2).
+• Aceite: para frete de carga perigosa de 800 kg, a resposta não aplica os multiplicadores gerais e cita a PROC-043 como fora da base.
+SR-05. Premissa falsa é corrigida, não respondida. Se a pergunta traz algo que a base desmente, o assistente corrige a premissa com a fonte.
+• Caso: "Qual o SLA do cliente Platinum?" → a SLA-2024, seção 1, diz que só existem Gold, Silver e Standard.
+• Aceite: nenhuma resposta atribui SLA a um tier inexistente. Teste da armadilha 3 do Anexo B.
+
+**Requisitos de atualização:**
+A atualização é automática, tem prazo contado a partir da publicação na fonte e vale também para retiradas. Operações, Compliance e Comercial publicam todo mês, e o Confluence muda toda semana: sem prazo, o assistente responde com a versão anterior sem ninguém perceber.
+
+**Requisitos de rastreabilidade:**
+Toda resposta cita a fonte e mostra o trecho literal, e todo número da resposta tem de estar no trecho citado. Isso permite ao atendente conferir em segundos (etapa P5 da jornada) e ao QA verificar de forma automática.
+Citação completa em toda resposta com regra. Toda resposta que traz regra, prazo, valor ou contato cita: documento, versão, data, seção e tipo de fonte.
 ```
 
 **Feedback recebido do Claude:**
 ```
-<!-- # Especificação de Requisitos — Pipeline de RAG do Assistente de Atendimento NovaTech
+Sua v1 já está boa em contradições e em "não encontrei". Antes da v2, precisa corrigir três coisas: o item 1 contradiz o item 2, o requisito de atualização não existe (só tem a justificativa) e várias referências apontam para trechos que não estão no texto.
+
+Gravidade alta
+
+O item 1 exclui justamente os documentos que o item 2 usa. Pela regra "indexa apenas documentos com metadados completos", três documentos ficariam fora da base:
+a PROC-042 v1 não tem status nem classificação;
+a PROC-042-v2 também não tem classificação;
+o FAQ não tem versão ("não controlada") nem dono ("nenhum responsável formal").
+Sem eles, o modo conflito e a regra "oficial prevalece sobre o FAQ" nunca seriam acionados. Sugestão: diga quem preenche o metadado que falta (a curadoria) e quais são os valores padrão, como "vigência não confirmada", "tipo não declarado" e "informal, sem dono".
+O item 1 não responde à pergunta do exercício. O exercício pede quais fontes indexar e quais não. A v1 define metadados, mas não decide nada sobre SharePoint, Confluence (~400 páginas), planilhas (inclusive a tabela mensal de fretes), FAQ, PROC-042 v1 ou PROC-043/PROC-088. Sugestão: uma tabela com fonte, decisão e motivo.
+Atualização (seu item 5) não tem requisito. O texto explica por que precisa de prazo, mas não diz qual é o prazo, quando o relógio começa, se retiradas seguem o mesmo prazo nem como o QA verifica. É a pergunta 4 do exercício ("em quanto tempo"), e hoje ela está sem resposta. Sugestão: prazo marcado como [PROPOSTA], início do relógio na publicação na fonte, retirada no mesmo prazo, ingestão automática e um aceite.
+A curadoria quase não aparece. É o primeiro critério de avaliação, mas a palavra surge só uma vez (CON-06). Faltam dono por documento (os cabeçalhos já dizem quem é), quem faz a triagem e quais decisões precisam sair antes do go-live. Sugestão: uma seção própria.
+
+Gravidade média
+
+A regra de transição é citada, mas não especificada. Falta dizer que o assistente pergunta a data do chamado (antes ou depois de 01/12/2023). Falta também o que acontece com o que a seção 5 não cobre: fator de peso, prazo +2/+3 e desconto. O aceite do "Sudeste" diz que a resposta sinaliza 1.0 e 1.1, mas não diz qual valor ela aplica.
+Só-FAQ em tema crítico não é tratado. A regra "oficial prevalece" só vale quando há conflito. No FAQ-32 (carga perigosa com expresso) não existe documento oficial para comparar, então o caso fica sem regra. Sugestão: um SR específico para isso.
+Falta o oposto do "não encontrei". Não há requisito contra recusa indevida (a informação está no trecho e o assistente diz que não achou). Também falta registrar cada "não encontrei" para a curadoria.
+Rastreabilidade incompleta. O único requisito lista os campos da citação, mas não tem aceite. Duas regras aparecem só no parágrafo de abertura e não viram requisito: mostrar o trecho literal (pergunta 5 do exercício) e exigir que todo número esteja no trecho citado.
+
+Forma
+
+Referências a trechos que não existem no texto: RA-03, "seção 7", "relatório de ingestão", "etapa P5" e "guardrail 3". O QA não consegue seguir.
+Numeração e códigos inconsistentes. Os itens vão 1, 2, 3, 5, 7. Alguns requisitos têm código (CON-06, SR-01 a SR-05) e outros não, como "Detectar o conflito", "Nunca misturar" e todo o item 1.
+O parágrafo de abertura do item 3 aparece duas vezes.
+
+Os pontos 1 e 3 são os que mais pesam, porque tornam a especificação inconsistente e incompleta nos próprios critérios do exercício.
+
+Quer que eu registre sua v1 e esta revisão no documento, no lugar das abas de histórico atuais? Assim o histórico mostra o seu rascunho, e não o meu.
+```
+
+## Especificação — versão refinada (v2)
+
+# Especificação de Requisitos — Pipeline de RAG do Assistente de Atendimento NovaTech
 
 **Autor:** Jaqueline Santos, Product Specialist
 **Base:** achados da fase de discovery (mapa de temas, análise de inconsistências PROC-042 v1/v2, cruzamento com o FAQ-Atendimento, mapa de riscos)
@@ -56,6 +157,7 @@ atendido. -->
 ## Contexto
 
 Esta especificação traduz os riscos já identificados no discovery — duas versões contraditórias do PROC-042, um FAQ informal sem validação oficial, e ausência de metadado de vigência documental — em requisitos concretos para o pipeline de RAG (a camada que decide o que o assistente pode consultar e como ele cita o que encontrou). Cada requisito vem com um critério de teste que o QA pode executar sem precisar entender a arquitetura interna do sistema.
+O assistente só é confiável se a base for curada: cada documento indexado precisa ter dono, versão, vigência e tipo de fonte, e o assistente precisa saber o que fazer quando esses dados faltam ou se contradizem. 
 
 ---
 
@@ -117,12 +219,7 @@ Esta especificação traduz os riscos já identificados no discovery — duas ve
 
 ## Pendências para validar antes do desenvolvimento
 
-O valor do prazo de ingestão (RF4.1/RF4.2) ainda não tem número confirmado pela NovaTech — está proposto como baseline de 24h úteis. A definição de quem tem autoridade formal para marcar um documento como obsoleto (RF1.5) também depende de uma decisão de governança que ainda não foi validada com Operações/Comercial/Compliance. -->
-```
-
-## Especificação — versão refinada (v2)
-
-<!-- versão final, incorporando o feedback -->
+O valor do prazo de ingestão (RF4.1/RF4.2) ainda não tem número confirmado pela NovaTech — está proposto como baseline de 24h úteis. A definição de quem tem autoridade formal para marcar um documento como obsoleto (RF1.5) também depende de uma decisão de governança que ainda não foi validada com Operações/Comercial/Compliance.
 
 ## Entregável
 
