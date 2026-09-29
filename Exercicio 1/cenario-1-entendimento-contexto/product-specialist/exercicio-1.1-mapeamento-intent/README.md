@@ -86,7 +86,7 @@ Ver também: [etapa-1-visao-geral.md](./etapa-1-visao-geral.md)
 ## Etapa 2 — Análise profunda (2 documentos selecionados)
 
 **Documentos escolhidos e por quê:**
-Escolhi os documentos PROC-042 v1 e v2, por serem as duas versões contraditórias identificadas na etapa 1. Escolhi as duas versões do PROC-042 porque são as únicas versões concorrentes do lote: a v2 revisa a v1, mas não declara formalmente que a substitui, e as duas coexistem no SharePoint. Queria isolar esse conflito para um diff linha a linha e observar como a IA avalia o risco de misturar as versões.
+Escolhi os documentos PROC-042 v1 e v2, por serem as duas versões contraditórias identificadas na etapa 1. A v2 revisa a v1, mas não declara formalmente que a substitui, e as duas coexistem no SharePoint. Queria isolar esse conflito para um diff linha a linha e observar como a IA avalia o risco de misturar as versões.
 
 **Prompt utilizado:**
 ```
@@ -411,13 +411,6 @@ Compliance e Gestão de Riscos: quais foram os critérios das exceções de devo
 Jurídico: o processo de sinistro do item 38 (48h, laudo, reembolso integral) é oficial? Pode ser informado ao cliente pelo atendimento?
 Operações: de onde vêm os prazos de rota do item 27? O critério de R$ 50.000 conversa com a definição de incidente crítico do SLA-2024?
 Atendentes e supervisores: quando o FAQ e o documento formal divergem, qual dos dois vocês seguem? Quem atualiza o FAQ, e com que frequência?
-
-Notas sobre o seu prompt, para usar no entregável:
-
-O que funcionou bem: passar os outputs das etapas 1 e 2 antes do FAQ. Isso permitiu validar hipóteses e reconhecer as regras híbridas previstas na Etapa 2.
-Ponto de melhoria: o prompt não marcou o FAQ como fonte de baixa confiabilidade e não incluiu os trechos-chave de POL-001 e SLA-2024. Por isso, os itens 3, 15, 27 e 41 só puderam ser comparados com o que o próprio FAQ diz sobre esses documentos. Se você rodar de novo, vale acrescentar duas ou três linhas com a regra formal de cada um e pedir categorias fixas de classificação. O Prompt 3 do guia já traz essa versão.
-
-Se quiser, adiciono esta resolução ao documento da prática, na seção da Etapa 3.
 
 ```
 
