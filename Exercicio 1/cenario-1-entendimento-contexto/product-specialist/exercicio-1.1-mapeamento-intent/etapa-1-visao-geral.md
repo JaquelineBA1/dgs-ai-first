@@ -3,7 +3,7 @@
 ## Prompt enviado ao Claude
 
 ```
-<!-- Tenho 5 documentos da NovaTech (empresa de logística) que preciso analisar antes de 
+Tenho 5 documentos da NovaTech (empresa de logística) que preciso analisar antes de 
 qualquer entrevista de discovery. Vou te passar só os metadados de cada um por
 enquanto — título, versão, responsável e um resumo de uma linha — sem o conteúdo
 completo. 
@@ -21,13 +21,13 @@ que já seja possível mapear, antes de eu te mostrar o conteúdo completo.
    Comercial + Operações. Define prazos de resposta/resolução por tier de cliente.
 5. FAQ-Atendimento — Perguntas Frequentes do Time de Suporte, versão não
    controlada, sem responsável formal. Documento colaborativo e informal com
-   práticas dos atendentes. -->
+   práticas dos atendentes.
 ```
 
 ## Output obtido
 
 ```
-<!-- Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
+Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
 
 Mapa de temas cobertos
 
@@ -51,9 +51,9 @@ Perguntas sugeridas para a discovery
 
 Vale perguntar diretamente: o que mudou entre PROC-042 v1.0 e v2.0, e a v1.0 ainda circula em algum lugar? Existe algum caso de devolução de carga >500kg, e qual documento rege o frete desse retorno? O SLA foi validado com quem executa (Operações) antes de publicado, e existe medição real de aderência a ele? Quanto do que está no FAQ diverge do que está em POL-001 ou SLA-2024 — e há casos em que o time de suporte segue o FAQ sabendo que contraria a política formal?
 
-Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.-->
+Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.
 ```
 
 ## Observações
 
-<!--Observações: o output já aponta corretamente, só com metadados, o risco mais crítico do caso (a duplicidade do PROC-042) e antecipa 3 dos 4 gaps reais listados no Anexo A — o que mostra que uma visão geral bem estruturada já vale muito antes de gastar orçamento de contexto com conteúdo completo. -->
+Observações: o output já aponta corretamente, só com metadados, o risco mais crítico do caso (a duplicidade do PROC-042) e antecipa 3 dos 4 gaps reais listados no Anexo A — o que mostra que uma visão geral bem estruturada já vale muito antes de gastar orçamento de contexto com conteúdo completo.
