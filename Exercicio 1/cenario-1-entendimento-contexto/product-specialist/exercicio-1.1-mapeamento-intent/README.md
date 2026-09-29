@@ -86,7 +86,7 @@ Ver também: [etapa-1-visao-geral.md](./etapa-1-visao-geral.md)
 ## Etapa 2 — Análise profunda (2 documentos selecionados)
 
 **Documentos escolhidos e por quê:**
-Escolhi os documentos PROC-042 v1 e v2, por serem as duas versões contraditórias identificadas na etapa 1.Devido ao fato da v2 ser uma evolução de v1, mas não conter o texto em sua totalidade, pode gerar conflito de entendimento. Por este motivo, gostaria de verificar como a IA irá se comportar.
+Escolhi os documentos PROC-042 v1 e v2, por serem as duas versões contraditórias identificadas na etapa 1. Escolhi as duas versões do PROC-042 porque são as únicas versões concorrentes do lote: a v2 revisa a v1, mas não declara formalmente que a substitui, e as duas coexistem no SharePoint. Queria isolar esse conflito para um diff linha a linha e observar como a IA avalia o risco de misturar as versões.
 
 **Prompt utilizado:**
 ```
