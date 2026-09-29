@@ -92,7 +92,6 @@ P1. Recebe a dúvida
 P2. Consulta o assistente
 • Quem age: atendente.
 • O que faz: pergunta ao assistente, em linguagem natural, já incluindo os dados de P1. Exemplo: "Frete especial para 600 kg, destino Manaus, chamado aberto hoje".
-• [PROPOSTA — validar no discovery]: modelo de pergunta com campos-guia (tier, peso, região, data do chamado, classe ANTT) para reduzir perguntas incompletas.
 P3. Busca e checagem da base
 • Quem age: assistente.
 • O que faz: recupera os trechos mais relevantes (tipicamente 3 a 5, conforme o Anexo B) e checa quatro coisas antes de responder.
@@ -118,7 +117,6 @@ P5. Verifica antes de repassar
 • Quem age: atendente.
 • O que verifica:
     ◦ A fonte é normativa ou contratual, e não o FAQ.
-    ◦ O trecho citado sustenta mesmo a resposta. [PROPOSTA — validar no discovery]: link direto para a seção no SharePoint.
     ◦ O caso cabe nas condições: peso acima de 500 kg para frete especial (PROC-042-v2, seção 1), carga fora das exceções da POL-001, seção 3.2.
     ◦ O tier informado pelo cliente confere com o contrato (SLA-2024, seção 1).
     ◦ O caso não é incidente crítico (SLA-2024, seção 3), que tem prazos próprios.
@@ -129,7 +127,6 @@ P5. Verifica antes de repassar
 P6. Usa no atendimento
 • Quem age: atendente.
 • O que faz: responde ao cliente com as próprias palavras, sem prometer nada além do trecho citado.
-• [PROPOSTA — validar no discovery]: registrar no chamado (Azure DevOps, SLA-2024, seção 5) o documento e a seção usados.
 P7. Avalia a resposta
 • Quem age: atendente.
 • O que faz: marca a resposta como útil ou com problema. [PROPOSTA — validar no discovery]: botões no card do Teams.
@@ -145,7 +142,6 @@ Fallback A — Sem resposta na base
 • FA3. Atendente: não responde valor ao cliente. Informa que vai confirmar e escala.
 • Destino: supervisor (guardrail 3). A área dona do frete padrão não está documentada (pergunta em aberto).
 • Mesmo tratamento para: o prazo padrão da rota. A PROC-042 e a v2 (seção 3) somam dias a esse prazo, mas ele não está na base. Isso afeta a categoria mais frequente de dúvida (prazos de entrega, 35%).
-• Saída: R1, tipo "sem cobertura". [PROPOSTA — validar no discovery]: registro automático de toda resposta "não encontrei".
 
 Fallback B — Fontes contraditórias (PROC-042 v1 × v2)
 • Gatilho: a busca traz trechos das duas versões. Exemplos do Anexo B: "Frete para 600 kg para Manaus?" e "Qual o multiplicador para o Sudeste?".
