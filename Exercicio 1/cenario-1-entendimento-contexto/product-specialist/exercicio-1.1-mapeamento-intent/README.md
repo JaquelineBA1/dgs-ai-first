@@ -5,13 +5,13 @@
 
 ## Contexto
 
-<!-- Breve resumo do exercício: você vai pré-analisar a documentação da NovaTech
+Breve resumo do exercício: você vai pré-analisar a documentação da NovaTech
 em 3 etapas progressivas (engenharia de contexto), antes de qualquer entrevista
-com stakeholder, para gerar hipóteses e identificar riscos. -->
+com stakeholder, para gerar hipóteses e identificar riscos.
 
 ## Estratégia de contexto adotada
 
-!-- Se eu tivesse fornecido os cinco documentos completos de uma vez, a primeira leitura provavelmente teria pulado direto para as contradições de superfície mais óbvias (números diferentes, prazos diferentes) e teria dado menos peso a padrões estruturais que só aparecem quando você olha só para metadados — como a sobreposição de dono entre Comercial e Operações, ou o fato de duas versões do mesmo procedimento existirem como documentos catalogados separadamente em vez de um único histórico versionado. Isso só ficou visível na etapa 1 porque não havia conteúdo nenhum para distrair.
+Se eu tivesse fornecido os cinco documentos completos de uma vez, a primeira leitura provavelmente teria pulado direto para as contradições de superfície mais óbvias (números diferentes, prazos diferentes) e teria dado menos peso a padrões estruturais que só aparecem quando você olha só para metadados — como a sobreposição de dono entre Comercial e Operações, ou o fato de duas versões do mesmo procedimento existirem como documentos catalogados separadamente em vez de um único histórico versionado. Isso só ficou visível na etapa 1 porque não havia conteúdo nenhum para distrair.
 
 Testar hipóteses em vez de só descrevê-las. Cada etapa funcionou como um ciclo de hipótese → verificação. Na etapa 1 houve o levantamento da hipótese de que o FAQ provavelmente seria "política paralela" com práticas não respaldadas. Na etapa 3, isso deixou de ser hipótese e virou fato verificável: o item 45 mostrou uma mistura real de v1 e v2 acontecendo na prática, não apenas um risco teórico que tinha sido especulado. Se tivesse compartilhado o FAQ junto com tudo mais desde o início, essa confirmação teria menos força — seria só mais um dado entre muitos, e não a validação de uma hipótese que já tinha sido exposta para poder conferir depois.
 
@@ -22,13 +22,13 @@ Esse desenho imita a dinâmica real de uma entrevista de Discovery, e ao mesmo t
 ## Etapa 1 — Visão geral (metadados apenas)
 
 **Por que forneci a informação nessa ordem:**
-!-- Optei por apresentar primeiro apenas os metadados — título, versão, responsável e resumo de uma linha — porque essa camada de informação já é suficiente para revelar riscos estruturais e de governança que ficam menos visíveis quando o conteúdo completo dos documentos está disponível. Sobreposição de responsáveis entre diretorias, proliferação de versões catalogadas como documentos distintos, ausência de controle formal de versão e desequilíbrio de maturidade documental são padrões que aparecem no nível dos metadados, e queria testar se essa camada, sozinha, já seria capaz de gerar hipóteses de risco relevantes antes de qualquer leitura de conteúdo.
+Optei por apresentar primeiro apenas os metadados — título, versão, responsável e resumo de uma linha — porque essa camada de informação já é suficiente para revelar riscos estruturais e de governança que ficam menos visíveis quando o conteúdo completo dos documentos está disponível. Sobreposição de responsáveis entre diretorias, proliferação de versões catalogadas como documentos distintos, ausência de controle formal de versão e desequilíbrio de maturidade documental são padrões que aparecem no nível dos metadados, e queria testar se essa camada, sozinha, já seria capaz de gerar hipóteses de risco relevantes antes de qualquer leitura de conteúdo.
 
 Essa ordem também teve a função de estabelecer uma linha de base de hipóteses a ser confirmada, refinada ou descartada nas etapas seguintes — em vez de partir direto para contradições de superfície (números, prazos, fórmulas), que só se tornam visíveis com o conteúdo completo e que tendem a capturar a atenção primeiro, deixando os padrões estruturais em segundo plano. Ao fixar as hipóteses antes de ver o conteúdo, ficou possível avaliar depois, de forma mais rigorosa, se a análise documental confirmava ou contrariava o que a estrutura dos metadados já sugeria.
 
 **Prompt utilizado:**
 ```
-<!-- Tenho 5 documentos da NovaTech (empresa de logística) que preciso analisar antes de 
+Tenho 5 documentos da NovaTech (empresa de logística) que preciso analisar antes de 
 qualquer entrevista de discovery. Vou te passar só os metadados de cada um por
 enquanto — título, versão, responsável e um resumo de uma linha — sem o conteúdo
 completo. 
@@ -46,12 +46,12 @@ que já seja possível mapear, antes de eu te mostrar o conteúdo completo.
    Comercial + Operações. Define prazos de resposta/resolução por tier de cliente.
 5. FAQ-Atendimento — Perguntas Frequentes do Time de Suporte, versão não
    controlada, sem responsável formal. Documento colaborativo e informal com
-   práticas dos atendentes. -->
+   práticas dos atendentes.
 ```
 
 **Output obtido:**
 ```
-<!-- Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
+Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
 
 Mapa de temas cobertos
 
@@ -75,23 +75,22 @@ Perguntas sugeridas para a discovery
 
 Vale perguntar diretamente: o que mudou entre PROC-042 v1.0 e v2.0, e a v1.0 ainda circula em algum lugar? Existe algum caso de devolução de carga >500kg, e qual documento rege o frete desse retorno? O SLA foi validado com quem executa (Operações) antes de publicado, e existe medição real de aderência a ele? Quanto do que está no FAQ diverge do que está em POL-001 ou SLA-2024 — e há casos em que o time de suporte segue o FAQ sabendo que contraria a política formal?
 
-Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.-->
- -->
-```
+Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.
+ ```
 
 **Como a qualidade do output foi (genérica? específica?):**
-<!-- A qualidade foi genérica, em alguns pontos tentou especificar mas devido a falta de informações, acabou mencionando informações genéricas -->
+A qualidade foi genérica, em alguns pontos tentou especificar mas devido a falta de informações, acabou mencionando informações genéricas.
 
 Ver também: [etapa-1-visao-geral.md](./etapa-1-visao-geral.md)
 
 ## Etapa 2 — Análise profunda (2 documentos selecionados)
 
 **Documentos escolhidos e por quê:**
-<!-- Escolhi os documentos PROC-042 v1 e v2, por serem as duas versões contraditórias identificadas na etapa 1.Devido ao fato da v2 ser uma evolução de v1, mas não conter o texto em sua totalidade, pode gerar conflito de entendimento. Por este motivo, gostaria de verificar como a IA irá se comportar.-->
+Escolhi os documentos PROC-042 v1 e v2, por serem as duas versões contraditórias identificadas na etapa 1.Devido ao fato da v2 ser uma evolução de v1, mas não conter o texto em sua totalidade, pode gerar conflito de entendimento. Por este motivo, gostaria de verificar como a IA irá se comportar.
 
 **Prompt utilizado:**
 ```
-<!--Aqui estão os conteúdos completos do PROC-042 v1.0 e do PROC-042-v2 (revisado). Identifique todas as inconsistências entre as duas versões — valores, prazos, fórmulas, qualquer coisa que difira — e avalie o risco de um assistente de IA misturar as duas versões numa mesma resposta. 
+Aqui estão os conteúdos completos do PROC-042 v1.0 e do PROC-042-v2 (revisado). Identifique todas as inconsistências entre as duas versões — valores, prazos, fórmulas, qualquer coisa que difira — e avalie o risco de um assistente de IA misturar as duas versões numa mesma resposta. 
 [
 
 ```markdown
@@ -181,12 +180,12 @@ O prazo de entrega para frete especial é calculado como o prazo padrão da rota
 
 ## 5. Disposições transitórias
 
-Durante o período de transição, chamados abertos antes de 01/12/2023 que ainda estejam em processamento devem usar os multiplicadores da versão anterior (PROC-042 v1). Chamados novos a partir de 01/12/2023 devem usar os multiplicadores desta versão.] -->
+Durante o período de transição, chamados abertos antes de 01/12/2023 que ainda estejam em processamento devem usar os multiplicadores da versão anterior (PROC-042 v1). Chamados novos a partir de 01/12/2023 devem usar os multiplicadores desta versão.]
 ```
 
 **Output obtido:**
 ```
-<!--Inconsistências identificadas entre PROC-042 v1.0 e v2.0
+Inconsistências identificadas entre PROC-042 v1.0 e v2.0
 Item	v1.0 (03/03/2023)	v2.0 (10/11/2023)	Direção da mudança
 Fator de peso — 1.001kg a 3.000kg	1,2	1,15	queda
 Fator de peso — acima de 3.000kg	1,5	1,4	queda
@@ -218,7 +217,7 @@ O ponto mais crítico, porém, é a seção 5 da v2 (disposições transitórias
 
 Some a isso o fato de que nenhum dos dois documentos declara formalmente que substitui o outro — ambos dizem textualmente que coexistem sem hierarquia clara no SharePoint. Isso é o cenário clássico de risco em base de conhecimento para IA (RAG): uma busca por "cálculo de frete especial" tende a recuperar as duas versões como igualmente relevantes (títulos quase idênticos, mesma estrutura, mesmo objetivo), e sem um sinal de metadado do tipo "vigente/obsoleto", o modelo não tem como discriminar sozinho — ele pode responder combinando trechos de ambas sem perceber, especialmente se a pergunta do usuário não mencionar a data do chamado.
 
-Uma mitigação natural para quando vocês montarem o assistente de discovery/atendimento: tratar documentos conflitantes sem data de vigência explícita como uma condição bloqueante (o assistente deveria se recusar a responder com um número específico e sinalizar a ambiguidade, ou perguntar a data do chamado antes de calcular), em vez de silenciosamente escolher uma versão. Isso também é, em si, uma descoberta de processo: a NovaTech precisa de um dono formal de vigência documental antes de qualquer IA poder responder com segurança sobre esse cálculo. -->
+Uma mitigação natural para quando vocês montarem o assistente de discovery/atendimento: tratar documentos conflitantes sem data de vigência explícita como uma condição bloqueante (o assistente deveria se recusar a responder com um número específico e sinalizar a ambiguidade, ou perguntar a data do chamado antes de calcular), em vez de silenciosamente escolher uma versão. Isso também é, em si, uma descoberta de processo: a NovaTech precisa de um dono formal de vigência documental antes de qualquer IA poder responder com segurança sobre esse cálculo.
 ```
 
 Ver também: [etapa-2-analise-profunda.md](./etapa-2-analise-profunda.md)
@@ -226,12 +225,13 @@ Ver também: [etapa-2-analise-profunda.md](./etapa-2-analise-profunda.md)
 ## Etapa 3 — Cruzamento com o FAQ-Atendimento
 
 **Prompt utilizado:**
-```<!-- Aqui está a análise de inconsistências que fizemos entre PROC-042 v1 e v2, e o mapa
+```
+Aqui está a análise de inconsistências que fizemos entre PROC-042 v1 e v2, e o mapa
 de temas da primeira etapa. Agora seguem as 8 perguntas do FAQ-Atendimento
 completo. Cruze as informações: onde o FAQ reforça, contradiz ou complementa o que
 já identificamos? Que práticas aparecem no FAQ sem respaldo em nenhum documento
 formal?
-[output da etapa 1 - <!-- Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
+[output da etapa 1 -  Com base só nos metadados, dá para montar um mapa preliminar e algumas hipóteses fortes de risco — vale destacar que são hipóteses a validar quando eu vir o conteúdo e, principalmente, na entrevista.
 Mapa de temas cobertos
 Os cinco documentos cobrem quatro áreas temáticas, mas de forma desigual: devolução de mercadorias (POL-001), precificação de frete especial (PROC-042 e sua revisão), compromissos de atendimento por tier de cliente (SLA-2024), e práticas informais de suporte (FAQ-Atendimento). Note que há uma sobreposição de dono entre Comercial e Operações (frete é Comercial, devolução é Operações, SLA é dos dois), o que já sinaliza que o processo ponta a ponta atravessa mais de uma diretoria sem que nenhum documento pareça ser o "dono" da jornada completa do cliente.
 Hipóteses de gaps e riscos
@@ -243,7 +243,7 @@ FAQ-Atendimento como "política paralela": este é provavelmente o ponto de maio
 Maturidade desigual entre documentos: POL-001 já está na v3.1 (bastante amadurecida), enquanto PROC-042 está apenas na v2.0 e o FAQ nem tem controle de versão. Isso sugere que a organização tem disciplina de gestão documental na área de Operações (retorno/devolução), mas menos disciplina em Comercial e nenhuma em Atendimento — um padrão que vale confirmar na entrevista, pois costuma refletir onde estão os processos mais maduros de verdade.
 Perguntas sugeridas para a discovery
 Vale perguntar diretamente: o que mudou entre PROC-042 v1.0 e v2.0, e a v1.0 ainda circula em algum lugar? Existe algum caso de devolução de carga >500kg, e qual documento rege o frete desse retorno? O SLA foi validado com quem executa (Operações) antes de publicado, e existe medição real de aderência a ele? Quanto do que está no FAQ diverge do que está em POL-001 ou SLA-2024 — e há casos em que o time de suporte segue o FAQ sabendo que contraria a política formal?
-Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.-->]
+Quando você mandar o conteúdo completo, posso validar essas hipóteses uma a uma e mapear com mais precisão onde estão as inconsistências reais entre os documentos.]
 
 [output da etapa 2 - # PROC-042-v2 — Procedimento de Cálculo de Frete Especial (Revisado)
 **Versão:** 2.0
@@ -314,12 +314,12 @@ Carga danificada em trânsito tem processo diferente de devolução. O cliente p
 Resposta é quando a gente dá o primeiro retorno ao cliente (mesmo que seja 'estamos verificando'). Resolução é quando o problema é efetivamente resolvido. O Gold tem 2h de resposta e 24h de resolução. Silver é 4h e 48h. Standard é 8h e 72h. Para incidentes críticos, os prazos são menores — veja a tabela SLA-2024.
 
 ### Item 45 — "O cliente quer desconto no frete. Posso dar?"
-Atendente não tem autonomia para dar desconto. Para clientes com mais de 10 fretes especiais por mês, existe desconto automático na tabela (veja PROC-042). Para outros casos, encaminhe ao Comercial com justificativa.] -->
+Atendente não tem autonomia para dar desconto. Para clientes com mais de 10 fretes especiais por mês, existe desconto automático na tabela (veja PROC-042). Para outros casos, encaminhe ao Comercial com justificativa.]
 ```
 
 **Output obtido:**
 ```
-<!--Cruzamento FAQ × documentos formais
+Cruzamento FAQ × documentos formais
 
 Antes de entrar no detalhe: dos cinco documentos, só temos o conteúdo completo de PROC-042 v1/v2. POL-001 e SLA-2024 continuam sendo só metadados. Então, onde o FAQ toca esses dois, o que dá para fazer é comparar com o tema declarado (o resumo de uma linha), não com regras específicas — vou marcar isso claramente item a item.
 
@@ -343,7 +343,7 @@ O item 45 merece destaque isolado: não é uma hipótese de risco de IA, é uma 
 
 Perguntas adicionais para a discovery
 
-Além das perguntas da etapa 1, valeria acrescentar: quem no Compliance/Gestão de Riscos tem autoridade formal para autorizar exceções de devolução de carga perigosa, e essa autoridade está documentada em algum lugar fora do FAQ? Existe uma política de seguro de carga formalizada, e por que ela não está entre os documentos já levantados? O processo de sinistro por carga danificada é tratado como parte da política de devolução (POL-001) ou é reconhecido pela empresa como um processo distinto — e nesse caso, existe uma política própria? Os critérios de priorização de chamados por valor de carga e por tier (item 27) vêm de algum documento oficial de operações, ou são um critério que o próprio time de atendimento criou com o tempo? E, por fim: quando o item 45 foi escrito no FAQ, isso foi antes ou depois da v2 da PROC-042 — ou seja, o FAQ nunca foi atualizado desde a revisão, ou foi atualizado errado? -->
+Além das perguntas da etapa 1, valeria acrescentar: quem no Compliance/Gestão de Riscos tem autoridade formal para autorizar exceções de devolução de carga perigosa, e essa autoridade está documentada em algum lugar fora do FAQ? Existe uma política de seguro de carga formalizada, e por que ela não está entre os documentos já levantados? O processo de sinistro por carga danificada é tratado como parte da política de devolução (POL-001) ou é reconhecido pela empresa como um processo distinto — e nesse caso, existe uma política própria? Os critérios de priorização de chamados por valor de carga e por tier (item 27) vêm de algum documento oficial de operações, ou são um critério que o próprio time de atendimento criou com o tempo? E, por fim: quando o item 45 foi escrito no FAQ, isso foi antes ou depois da v2 da PROC-042 — ou seja, o FAQ nunca foi atualizado desde a revisão, ou foi atualizado errado?
 ```
 
 Ver também: [etapa-3-cruzamento-faq.md](./etapa-3-cruzamento-faq.md)
@@ -364,7 +364,7 @@ Ver também: [etapa-3-cruzamento-faq.md](./etapa-3-cruzamento-faq.md)
 ## Reflexão — progressivo vs. tudo de uma vez
  O que teria acontecido se você tivesse colado os 5 documentos completos
 de uma vez no primeiro prompt? Compare com o resultado da abordagem progressiva.
-Relacione com orçamento de atenção e context rot. -->
+Relacione com orçamento de atenção e context rot.
 
 ## Entregável
 
