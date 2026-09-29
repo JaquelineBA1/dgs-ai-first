@@ -1,5 +1,5 @@
 # Etapa 2 — Análise profunda (2 documentos selecionados)
-
+```
 ## Documentos escolhidos e justificativa
 
 <!-- PROC-042 v1 e v2, por serem as duas versões contraditórias apontadas na etapa 1 -->
@@ -99,6 +99,7 @@ Durante o período de transição, chamados abertos antes de 01/12/2023 que aind
 ```
 
 ## Output obtido
+```
  Inconsistências identificadas entre PROC-042 v1.0 e v2.0
 Item	v1.0 (03/03/2023)	v2.0 (10/11/2023)	Direção da mudança
 Fator de peso — 1.001kg a 3.000kg	1,2	1,15	queda
