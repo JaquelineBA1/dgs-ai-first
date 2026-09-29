@@ -332,7 +332,92 @@ Atendente não tem autonomia para dar desconto. Para clientes com mais de 10 fre
 **Output obtido:**
 ```
 Cruzamento FAQ × documentos formais
+cruzamento do FAQ com as etapas 1 e 2
 
+Resumo: o FAQ confirma a hipótese mais forte da Etapa 1. Ele funciona como uma política paralela. Dos 9 itens, só 2 são apenas consistentes com a documentação formal (15 e 41). Dois pioram o conflito da PROC-042 (8 e 45), porque criam regras híbridas que não existem em nenhuma das versões. Cinco trazem práticas sem nenhum documento formal por trás (22, 27, 32, 38 e a exceção do item 3).
+
+Limite desta análise: neste contexto recebi o conteúdo completo só da PROC-042 (v1 e v2) e do FAQ. Para POL-001 e SLA-2024 tenho apenas metadados e resumos. As comparações com esses dois documentos se apoiam no que o próprio FAQ diz sobre eles e precisam ser confirmadas no texto original.
+
+1. Onde o FAQ reforça, contradiz ou complementa
+Item	Tema	Relação	O que muda frente às etapas 1 e 2
+3	Devolução de carga perigosa	Suaviza a regra formal	O próprio FAQ admite que "oficialmente não pode", mas orienta o atendente a não dizer isso ao cliente. A regra vira "tratamento especial".
+8	Frete especial	Contradiz a v2 e piora o conflito	Cria um terceiro critério de versão, "o contrato do cliente", que não existe nos documentos.
+15	Tier Platinum	Reforça	Confirma que só existem Gold, Silver e Standard. Diz que a verificação é feita pelo número do contrato.
+22	Seguro de carga	Complementa, sem respaldo	Informa percentuais (0,3% e 0,8%) que não aparecem em nenhum documento formal.
+27	Tracking parado	Complementa, sem respaldo	Traz prazos por rota e um critério próprio de prioridade alta.
+32	Carga perigosa com frete expresso	Complementa, sem respaldo	Descreve um fluxo de autorização pelo Compliance que não está documentado.
+38	Carga danificada	Complementa, sem respaldo	Descreve um processo completo (prazo, Jurídico, e-mail) que só existe no FAQ.
+41	SLA de resposta e de resolução	Reforça (confirmar no SLA-2024)	Os números (2h/24h, 4h/48h, 8h/72h) batem com o resumo do SLA-2024.
+45	Desconto no frete	Mistura as duas versões	Junta o gatilho da v1 com o mecanismo da v2.
+2. Cruzamento com as inconsistências da Etapa 2 (PROC-042)
+
+O FAQ não resolve nenhuma das inconsistências. Em dois pontos, ele agrava.
+
+Item 8: materializa a heurística ingênua prevista na Etapa 2
+
+O FAQ diz que "a mais recente tem multiplicadores mais altos". Isso vale para o multiplicador regional, mas esconde que o fator de peso caiu na v2 (1,2 para 1,15 e 1,5 para 1,4). Um atendente ou um assistente que siga essa lógica pode combinar o multiplicador da v2 com o fator de peso da v1. É exatamente o cálculo híbrido que a Etapa 2 apontou como risco alto.
+O FAQ diz que, "se o cliente reclamar, pode ser que o contrato dele esteja na tabela antiga". Isso inventa um critério por contrato. A seção 5 da v2 define a transição pela data de abertura do chamado, antes ou depois de 01/12/2023. Há agora três regras concorrentes: a v1, a v2 e a regra do FAQ.
+O preço passa a depender de o cliente reclamar ou não. Quem reclama pode cair na tabela mais barata, e quem não reclama paga a v2. Isso gera tratamento desigual e é um risco comercial.
+
+Item 45: cria uma regra que nunca existiu
+
+O limite "mais de 10 fretes por mês" vem da v1, onde o desconto era negociado caso a caso por aditivo contratual.
+O "desconto automático na tabela" é o mecanismo da v2, onde o gatilho é a partir de 8 fretes (5%) e acima de 15 (10%).
+Na prática, clientes com 8 a 10 fretes por mês têm direito ao desconto pela v2, mas o FAQ manda negar. O FAQ também não cita os percentuais nem o degrau de 10%.
+O item ainda aponta "veja PROC-042" sem dizer a versão. Se o assistente indexar o FAQ, esse item recupera junto os chunks das duas versões.
+
+O que o FAQ não cobre
+
+O FAQ não fala do prazo adicional (+2 ou +3 dias úteis). Esse conflito continua sem nenhuma orientação prática, e é o que vira promessa direta ao cliente.
+O FAQ não fala da transição por data de chamado. Ou o time não conhece a seção 5 da v2, ou não a aplica.
+3. Validação das hipóteses da Etapa 1
+Hipótese da Etapa 1	Resultado	Evidência no FAQ
+FAQ como "política paralela"	Confirmada	Itens 3, 8, 27 e 45 alteram ou substituem regras formais
+Governança de versões fraca (PROC-042)	Confirmada e ampliada	O time sabe que existem duas versões (item 8) e improvisa um critério próprio
+Fronteira entre devolução e frete especial (logística reversa acima de 500kg)	Continua sem resposta	Nenhum item trata do frete de retorno de carga pesada
+SLA sem lastro operacional	Parcialmente confirmada	O item 27 cria um critério interno de prioridade (Gold ou carga acima de R$ 50.000) que não está nos documentos formais
+Segmentação de clientes não documentada	Enfraquecida	O item 15 indica que o tier é verificado pelo contrato. Os critérios precisam ser confirmados no SLA-2024
+Maturidade desigual entre áreas	Confirmada	Os temas mais críticos que só existem no FAQ (sinistro, seguro, carga perigosa expressa) dependem de Jurídico, Comercial e Compliance
+
+Novo achado: carga perigosa é um cluster de risco. Ela aparece em três pontos, e nenhum deles tem uma regra formal estável:
+
+Devolução (item 3): a regra formal é suavizada no dia a dia.
+Frete expresso (item 32): a autorização do Compliance não está documentada.
+Frete acima de 500kg (Etapa 2): a PROC-043 está em revisão pelo Compliance.
+
+É o tema com maior risco regulatório (ANTT) e o que tem a base mais fraca.
+
+4. Práticas sem respaldo em documento formal
+Item 3: a Gestão de Riscos já autorizou exceções para devolução de carga perigosa. O FAQ não diz quais critérios foram usados.
+Item 8: vale a tabela antiga para contratos antigos.
+Item 15: existiu um programa de fidelidade antigo, descontinuado em 2022. É um dado histórico, sem fonte.
+Item 22: seguro de 0,3% para carga padrão e 0,8% para carga perigosa, para contratos a partir de 2023.
+Item 27: rotas para o Norte levam até 10 dias úteis. Para Sul e Sudeste, mais de 3 dias parado é anormal. Prioridade alta para cliente Gold ou carga acima de R$ 50.000.
+Item 32: carga perigosa com frete expresso exige autorização do Compliance, que leva cerca de 2 dias.
+Item 38: carga danificada tem registro em até 48h, laudo, reembolso integral, passa pelo Jurídico e é encaminhada para sinistros@novatech.com.br.
+Item 45: desconto automático para quem faz mais de 10 fretes por mês.
+5. O que o assistente faria de errado se indexasse o FAQ com o mesmo peso
+Item	Resposta errada provável	Gravidade
+3	"Carga perigosa pode ser devolvida com tratamento especial", invertendo a regra	Alta: regulatória
+8	Calcula com uma versão escolhida pelo "contrato" ou mistura parâmetros das duas	Alta: financeira
+45	Nega desconto a quem tem 8 a 10 fretes por mês, ou promete desconto automático sem percentual	Alta: financeira e contratual
+22	Informa percentuais de seguro como se fossem oficiais	Média a alta: contratual
+38	Promete "reembolso integral" como regra, quando depende de investigação do Jurídico	Alta: jurídica
+27	Classifica prioridade com um critério que difere da definição formal de incidente crítico	Média: SLA
+32	Confirma frete expresso para carga perigosa sem um processo formal por trás	Alta: regulatória
+6. Perguntas para o discovery humano
+Diretoria Comercial: a v1 está revogada? Contratos assinados sob a v1 mantêm a tabela antiga, ou vale só a data do chamado? O desconto do item 45 (mais de 10 fretes) está sendo aplicado hoje? Os percentuais de seguro do item 22 são oficiais?
+Compliance e Gestão de Riscos: quais foram os critérios das exceções de devolução de carga perigosa (item 3)? Existe um fluxo formal para carga perigosa com frete expresso? Qual é o prazo previsto para a revisão da PROC-043?
+Jurídico: o processo de sinistro do item 38 (48h, laudo, reembolso integral) é oficial? Pode ser informado ao cliente pelo atendimento?
+Operações: de onde vêm os prazos de rota do item 27? O critério de R$ 50.000 conversa com a definição de incidente crítico do SLA-2024?
+Atendentes e supervisores: quando o FAQ e o documento formal divergem, qual dos dois vocês seguem? Quem atualiza o FAQ, e com que frequência?
+
+Notas sobre o seu prompt, para usar no entregável:
+
+O que funcionou bem: passar os outputs das etapas 1 e 2 antes do FAQ. Isso permitiu validar hipóteses e reconhecer as regras híbridas previstas na Etapa 2.
+Ponto de melhoria: o prompt não marcou o FAQ como fonte de baixa confiabilidade e não incluiu os trechos-chave de POL-001 e SLA-2024. Por isso, os itens 3, 15, 27 e 41 só puderam ser comparados com o que o próprio FAQ diz sobre esses documentos. Se você rodar de novo, vale acrescentar duas ou três linhas com a regra formal de cada um e pedir categorias fixas de classificação. O Prompt 3 do guia já traz essa versão.
+
+Se quiser, adiciono esta resolução ao documento da prática, na seção da Etapa 3.
 
 ```
 
