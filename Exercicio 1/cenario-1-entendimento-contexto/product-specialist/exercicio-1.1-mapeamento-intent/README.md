@@ -8,6 +8,7 @@
 Breve resumo do exercício: você vai pré-analisar a documentação da NovaTech
 em 3 etapas progressivas (engenharia de contexto), antes de qualquer entrevista
 com stakeholder, para gerar hipóteses e identificar riscos.
+ **Etapa 1 — Visão geral:** Forneça ao Claude apenas os títulos, metadados e resumos dos 5 documentos (não o conteúdo completo). Peça um mapa de temas cobertos e hipóteses de gaps
 
 ## Estratégia de contexto adotada
 
@@ -95,7 +96,8 @@ Foco em processo, não em RAG. Recuperação de documentos quase idênticos, chu
 
 Ver também: [etapa-1-visao-geral.md](./etapa-1-visao-geral.md)
 
-## Etapa 2 — Análise profunda (2 documentos selecionados)
+## **Etapa 2 — Análise profunda:** 
+Com base no mapa da etapa 1, selecione os 2 documentos que mais precisam de análise (ex: os dois PROC-042 contraditórios). Forneça o conteúdo completo apenas desses 2 e peça análise de inconsistências.
 
 **Documentos escolhidos e por quê:**
 Escolhi os documentos PROC-042 v1 e v2, por serem as duas versões contraditórias identificadas na etapa 1. A v2 revisa a v1, mas não declara formalmente que a substitui, e as duas coexistem no SharePoint. Queria isolar esse conflito para um diff linha a linha e observar como a IA avalia o risco de misturar as versões.
@@ -249,7 +251,8 @@ Dependências fora do corpus. O valor base vem de uma tabela mensal que não est
 
 Ver também: [etapa-2-analise-profunda.md](./etapa-2-analise-profunda.md)
 
-## Etapa 3 — Cruzamento com o FAQ-Atendimento
+## **Etapa 3 — Cruzamento:** 
+Forneça ao Claude o output das etapas 1 e 2 junto com o FAQ-Atendimento completo. Peça que cruze as inconsistências encontradas com as práticas informais do FAQ.
 
 **Prompt utilizado:**
 ```
