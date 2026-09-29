@@ -60,7 +60,7 @@ Citação completa em toda resposta com regra. Toda resposta que traz regra, pra
 
 **Prompt para revisão da v1:**
 ```
-laude, revise esta versão do documento de requisitos V1.
+Claude, revise esta versão do documento de requisitos V1.
 
 ## Especificação — versão inicial (v1)
 
