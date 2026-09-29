@@ -6,11 +6,8 @@
 
 ## Prompt enviado ao Claude
 
-```
-<!-- Aqui estão os conteúdos completos do PROC-042 v1.0 e do PROC-042-v2 (revisado). Identifique todas as inconsistências entre as duas versões — valores, prazos, fórmulas, qualquer coisa que difira — e avalie o risco de um assistente de IA misturar as duas versões numa mesma resposta. 
-[
+-- Aqui estão os conteúdos completos do PROC-042 v1.0 e do PROC-042-v2 (revisado). Identifique todas as inconsistências entre as duas versões — valores, prazos, fórmulas, qualquer coisa que difira — e avalie o risco de um assistente de IA misturar as duas versões numa mesma resposta. 
 
-```markdown
 # PROC-042 — Procedimento de Cálculo de Frete Especial
 
 **Versão:** 1.0
@@ -52,14 +49,9 @@ O prazo de entrega para frete especial é calculado como o prazo padrão da rota
 - Cargas acima de 5.000kg requerem aprovação prévia do gerente de operações regional.
 - Cargas perigosas com peso acima de 500kg seguem tabela específica (PROC-043: Frete de Cargas Perigosas).
 - Descontos de volume (mais de 10 fretes especiais/mês para o mesmo cliente) devem ser negociados pelo Comercial e registrados em aditivo contratual.
+__________________________________________________________________________________________________________________________________________________
 
-```
-
-
-[
-
-```markdown
-# PROC-042-v2 — Procedimento de Cálculo de Frete Especial (Revisado)
+PROC-042-v2 — Procedimento de Cálculo de Frete Especial (Revisado)
 
 **Versão:** 2.0
 **Data de emissão:** 10/11/2023
@@ -107,9 +99,7 @@ Durante o período de transição, chamados abertos antes de 01/12/2023 que aind
 ```
 
 ## Output obtido
-
-```
-<!-- Inconsistências identificadas entre PROC-042 v1.0 e v2.0
+ Inconsistências identificadas entre PROC-042 v1.0 e v2.0
 Item	v1.0 (03/03/2023)	v2.0 (10/11/2023)	Direção da mudança
 Fator de peso — 1.001kg a 3.000kg	1,2	1,15	queda
 Fator de peso — acima de 3.000kg	1,5	1,4	queda
@@ -146,5 +136,5 @@ Uma mitigação natural para quando vocês montarem o assistente de discovery/at
 
 ## Observações
 
-<!-- Risco: um assistente de RAG pode recuperar chunks de ambas as versões para a mesma pergunta (ex: "frete para 600kg para o Sul") e combinar, por exemplo, o multiplicador da v2 com o fator de peso da v1, gerando um valor que não corresponde a nenhuma das duas versões oficialmente. Isso seria pior do que usar uma versão desatualizada consistentemente — seria uma "terceira versão" inventada. 
-a análise profunda confirma e quantifica exatamente o que a Etapa 1 só suspeitava — aqui já dá para ver os valores concretos da contradição, o que muda o tipo de ação que se pode propor no discovery (de "investigar se há conflito" para "decidir qual versão vigora e como sinalizar isso ao pipeline").-->
+Risco: um assistente de RAG pode recuperar chunks de ambas as versões para a mesma pergunta (ex: "frete para 600kg para o Sul") e combinar, por exemplo, o multiplicador da v2 com o fator de peso da v1, gerando um valor que não corresponde a nenhuma das duas versões oficialmente. Isso seria pior do que usar uma versão desatualizada consistentemente — seria uma "terceira versão" inventada. 
+a análise profunda confirma e quantifica exatamente o que a Etapa 1 só suspeitava — aqui já dá para ver os valores concretos da contradição, o que muda o tipo de ação que se pode propor no discovery (de "investigar se há conflito" para "decidir qual versão vigora e como sinalizar isso ao pipeline").
