@@ -362,8 +362,7 @@ Ver também: [etapa-3-cruzamento-faq.md](./etapa-3-cruzamento-faq.md)
 | 6 | SLA-2024 tem dono compartilhado (Comercial + Operações), mas nenhum documento do lote amarra os prazos de resposta/resolução do SLA aos prazos reais das etapas operacionais que dependem de terceiros (aprovação de Compliance para carga perigosa, laudo do Jurídico para sinistro) — e o item 32 já mostra um caso concreto de descompasso (aprovação de ~2 dias para algo vendido como "expresso"). | O SLA promete prazos (ex.: Gold: 2h resposta / 24h resolução) que a operação não consegue cumprir de forma sistemática nos casos que dependem de aprovação externa — gerando cliente insatisfeito e possível penalidade contratual que a empresa nem sabe que está correndo. | Perguntar: "O SLA-2024 foi validado com Operações e Compliance antes de ser publicado? Existe hoje alguma medição real de aderência ao SLA separada por tipo de caso — especificamente para os que dependem de aprovação externa (carga perigosa, sinistro, frete especial)?" |
 
 ## Reflexão — progressivo vs. tudo de uma vez
-
-<!-- O que teria acontecido se você tivesse colado os 5 documentos completos
+ O que teria acontecido se você tivesse colado os 5 documentos completos
 de uma vez no primeiro prompt? Compare com o resultado da abordagem progressiva.
 Relacione com orçamento de atenção e context rot. -->
 
