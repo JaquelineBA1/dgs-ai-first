@@ -499,6 +499,8 @@ O glossário cita o Anexo A completo, mas o LLM só vê os **chunks** recuperado
 19. Quais pares de categorias formam os **15% de perguntas cruzadas**? Existe amostra do discovery com essa distribuição?
 20. Os chunks do Anexo B vão ser **re-gerados** para cobrir as regras que hoje não têm chunk (cadeia de frio, lacre, pausa do relógio de SLA, §4 da v1)?
 
+
+____________________________________________________________________________________________________________________________________________________
 2. Usando o **Claude**, escreva o `requirements.md` do query endpoint seguindo a estrutura SDD. As prior decisions devem referenciar as ADRs da fase anterior (simuladas no contexto). Os scope boundaries devem derivar dos bounded contexts definidos acima.
 # requirements.md — Query Endpoint (NovaTech Assistant)
 
@@ -724,3 +726,5 @@ Cada VC vira uma entrada em `prompts/eval/golden-queries.json` e nas fixtures `t
 - **OQ-19.** Para VC-11, VC-13 e VC-14 (sem chunk), qual é o caminho: o pipeline regenera os chunks para cobrir a regra, ou o resultado esperado passa a ser "não encontrado"?
 - **OQ-20.** Qual é o formato das entradas de `prompts/eval/golden-queries.json` e quem mantém a correspondência VC → golden query?
 - **OQ-21.** O formato de citação usa a seção do documento (`POL-001 §3.2`) ou o ID do chunk (`POL-001-B`)?
+
+_______________________________________________________________________________________________________________________________________________________
