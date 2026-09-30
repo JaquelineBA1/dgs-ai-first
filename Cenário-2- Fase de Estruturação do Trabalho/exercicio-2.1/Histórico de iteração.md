@@ -1,9 +1,10 @@
 
-Prompt enviado ao Claude
+# **Prompt enviado ao Claude**
+
 Claude quero que atue como Tech Lead e aponte ambiguidades. Ajuste.
 
 
-Output obtido
+# **Output obtido**
 Vou revisar como Tech Lead, comparando o mockup com o requirements v1.1 e o recorte de domínio. Primeiro levanto as ambiguidades, depois ajusto o canvas.
 
 Editou um arquivo, executou um comando · 1 nota
