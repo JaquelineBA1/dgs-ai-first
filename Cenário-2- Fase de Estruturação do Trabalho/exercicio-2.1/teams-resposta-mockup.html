@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovaTech Assistant · Resposta no Teams</title>
+<style>
+
+body{margin:0;font-family:'Segoe UI','Noto Sans',system-ui,sans-serif;color:#242424;background:#EBEBEB}
+a{color:#4F52B2}a:hover{color:#3D3E78}
+.src{display:inline-flex;align-items:center;font-size:12px;line-height:18px;padding:0 6px;border-radius:4px;background:#F0F0F0;border:1px solid #DCDCDC;color:#3D3D3D;font-family:'Cascadia Mono',Consolas,monospace;white-space:nowrap;margin-left:4px;vertical-align:1px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;line-height:20px;padding:0 8px;border-radius:10px;white-space:nowrap}
+.b-norm{background:#EBF3FC;color:#0F548C}
+.b-contr{background:#E0F2F1;color:#0B5A57}
+.b-inf{background:#FFF1D6;color:#6E3A00;border:1px solid #E9B85A}
+.b-contra{background:#F6EAF8;color:#6B1F80}
+.b-gap{background:#EDEDED;color:#333333}
+.b-route{background:#E7F2E4;color:#1D5B14}
+.b-prop{background:#FFFFFF;color:#4D4D4D;border:1px dashed #7A7A7A;font-weight:500}
+.claim{margin:0;font-size:14px;line-height:22px}
+.sec{padding:16px 20px;border-top:1px solid #EAEAEA;display:flex;flex-direction:column;gap:10px}
+.lbl{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#5C5C5C}
+.btn{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px;border:1px solid #D1D1D1;border-radius:4px;background:#FFFFFF;color:#242424;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.btn:hover{background:#F5F5F5}
+.rail-i{display:flex;flex-direction:column;align-items:center;gap:2px;width:60px;padding:8px 0;border:0;background:transparent;color:#5C5C5C;font:inherit;font-size:10px;cursor:pointer;border-radius:6px}
+.th{font-size:12px;font-weight:700;color:#5C5C5C;padding:10px 14px;background:#F7F7F7}
+.td{font-size:14px;line-height:20px;padding:10px 14px;border-top:1px solid #EAEAEA}
+
+body{background:#FAFAFA}
+.page{max-width:1340px;margin:0 auto;padding:32px 24px 64px}
+.page>h1{font-size:28px;margin:0 0 8px}
+.lead{color:#424242;font-size:15px;line-height:22px;margin:0 0 20px;max-width:900px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.toc a{font-size:13px;padding:6px 12px;border:1px solid #D1D1D1;border-radius:16px;background:#FFFFFF;text-decoration:none;color:#242424}
+.toc a:hover{border-color:#4F52B2;color:#4F52B2}
+.geral{white-space:pre-line;font-size:14px;line-height:21px;background:#FFFFFF;border:1px dashed #7A7A7A;border-radius:6px;padding:12px 16px;margin:0 0 32px;max-width:900px}
+.scn{margin:0 0 48px}
+.scn h2{font-size:20px;margin:0 0 8px}
+.note{white-space:pre-line;font-size:14px;line-height:21px;color:#424242;margin:0 0 16px;max-width:900px}
+.frame{overflow-x:auto;border:1px solid #D6D6D6;border-radius:8px;width:fit-content;max-width:100%;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+</style>
+</head>
+<body>
+<main class="page">
+<h1>NovaTech Assistant · Resposta no Teams</h1>
+<p class="lead">Mockup da interface de resposta do bot no Microsoft Teams (<code>specs/teams-bot/</code>), coerente com <code>specs/query-endpoint/requirements.md</code> v1.1 e com o recorte de domínio. Cada tela corresponde a um Verification Criterion.</p>
+<nav class="toc" aria-label="Cenários"><a href="#s1">1 · Contradição v1 × v2 (VC-03)</a><a href="#s2">2 · Normativo + FAQ informal (VC-10)</a><a href="#s3">3 · Termo inexistente (VC-02)</a><a href="#s4">4 · Lacuna na base (VC-04)</a><a href="#s5">5 · Multi-domínio + encaminhamento (VC-23)</a></nav>
+<div class="geral">Elementos com borda tracejada são propostas [A DEFINIR · validar com TL/NovaTech]:
+• Ref. da resposta para correlação com a API de feedback (§2.2).
+• Sinal C-14 de contradição pendente no Compliance.
+• Encaminhamento quando a base não prevê nenhum.
+
+Citação no formato DOC §seção (OQ-21 ainda aberta).</div>
+<section id="s1" class="scn">
+<h2>1 · Contradição v1 × v2 (VC-03)</h2>
+<div class="note">Cobre O-04, C-03, C-07, C-08, C-09.
+Mostra as duas versões lado a lado, sem declarar vencedora, e a transição da v2 §5.
+
+A validar:
+• OQ-01 / OQ-17: mostrar ambas (spec) × priorizar a mais recente (ADR-0003).
+• T-06: as duas versões completas pedem 7 chunks (limite de 5).
+• OQ-05: mapeamento Manaus → Norte.
+• OQ-14: se a PROC-042 está entre os 12 pendentes (sinal C-14).</div>
+<div class="frame"><div style="width: 1280px; height: 1560px; display: flex; flex-direction: column; background: #EBEBEB; overflow: hidden">
+<div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative">
+<div style="width: 520px; height: 32px; background: #FFFFFF; border: 1px solid #D6D6D6; border-radius: 4px; display: flex; align-items: center; gap: 8px; padding: 0 10px; box-sizing: border-box; color: #616161"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input aria-label="Pesquisar" placeholder="Pesquisar" style="border: 0; outline: none; font: inherit; font-size: 13px; flex-grow: 1; background: transparent"></div>
+<div style="position: absolute; right: 16px; top: 8px; width: 32px; height: 32px; border-radius: 16px; background: #D6D7F2; color: #3D3E78; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700">AT</div>
+</div>
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<div style="width: 68px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 4px">
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>Atividade</button>
+<button class="rail-i" type="button" style="color: #4F52B2; background: #FFFFFF; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg>Chat</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 19c0-3 3-5 6-5s6 2 6 5"></path><path d="M15 14c3 0 6 1.5 6 4.5"></path></svg>Equipes</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Calendário</button>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; background: #F5F5F5; border-radius: 8px 0 0 0; min-width: 0">
+<div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: #FFFFFF; border-bottom: 1px solid #E0E0E0; border-radius: 8px 0 0 0">
+<div style="width: 32px; height: 32px; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="font-size: 16px; font-weight: 700">NovaTech Assistant</div>
+<div style="display: flex; gap: 20px; margin-left: 16px; height: 56px">
+<a href="#" style="display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #242424; text-decoration: none; border-bottom: 3px solid #4F52B2; box-sizing: border-box; padding-top: 3px">Chat</a>
+<a href="#" style="display: flex; align-items: center; font-size: 14px; color: #5C5C5C; text-decoration: none">Sobre</a>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 24px 0; min-height: 0; overflow: hidden">
+<div style="width: 820px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px; color: #616161; font-size: 12px"><div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div>Hoje<div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div></div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<div style="font-size: 12px; color: #616161">09:41</div>
+<div style="max-width: 560px; background: #E8EBFA; border-radius: 6px; padding: 10px 14px; font-size: 14px; line-height: 21px">Frete para 600kg para Manaus?</div>
+</div>
+<div style="display: flex; gap: 12px">
+<div style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #616161"><span style="font-weight: 600; color: #242424">NovaTech Assistant</span><span style="border: 1px solid #C7C7C7; border-radius: 3px; padding: 0 4px; font-size: 10px">Bot</span>09:41</div>
+<div style="width: 720px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06)">
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700; line-height: 24px">Frete especial · 600kg para Manaus</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="badge" style="background: #F0F0F0; color: #424242; font-weight: 500">Regras de frete</span><span class="badge" style="background: #F0F0F0; color: #424242; font-weight: 500">Prazos de entrega</span></div>
+</div>
+<div style="margin: 0 20px 16px; padding: 12px 14px; background: #F6EAF8; border: 1px solid #D9B6E2; border-radius: 6px; display: flex; gap: 10px">
+<div style="color: #6B1F80; padding-top: 2px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M12 4v16"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; font-weight: 700; color: #6B1F80">Os documentos se contradizem</div>
+<div style="font-size: 14px; line-height: 21px; color: #242424">A PROC-042 v1 e a PROC-042-v2 coexistem sem hierarquia clara e sem indicação formal de vigência. Não há resolução formal, então as duas versões aparecem abaixo.<span class="src">PROC-042-v2 cabeçalho</span></div>
+</div>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8v.01"></path></svg>Enquadramento</div></div>
+<p class="claim">600kg é <b>frete especial</b>: a regra vale para cargas com peso acima de 500kg.<span class="src">PROC-042 §1</span><span class="src">PROC-042-v2 §1</span></p><p class="claim">Fórmula nas duas versões: <b>Valor do frete = Valor base × Multiplicador regional × Fator de peso</b>.<span class="src">PROC-042 §2</span><span class="src">PROC-042-v2 §2</span></p>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M12 4v16"></path></svg>Duas versões, lado a lado</div><span class="badge b-contra">Contradição sem resolução formal</span></div>
+<div style="border: 1px solid #E0E0E0; border-radius: 6px; overflow: hidden; display: grid; grid-template-columns: 180px minmax(0, 1fr) minmax(0, 1fr)">
+<div class="th">Parâmetro</div>
+<div class="th" style="display: flex; align-items: center; gap: 8px">PROC-042 v1 <span class="badge b-norm">Normativo</span></div>
+<div class="th" style="display: flex; align-items: center; gap: 8px">PROC-042-v2 <span class="badge b-norm">Normativo</span></div>
+<div class="td" style="color: #5C5C5C">Multiplicador regional · Norte</div>
+<div class="td"><span style="font-size: 20px; font-weight: 700">1.6</span><span class="src">PROC-042 §2.1</span></div>
+<div class="td"><span style="font-size: 20px; font-weight: 700">1.8</span><span class="src">PROC-042-v2 §2.1</span><div style="font-size: 12px; color: #5C5C5C">atualizados em novembro/2023</div></div>
+<div class="td" style="color: #5C5C5C">Fator de peso · 500kg a 1.000kg</div>
+<div class="td"><span style="font-size: 20px; font-weight: 700">1.0</span><span class="src">PROC-042 §2</span></div>
+<div class="td"><span style="font-size: 20px; font-weight: 700">1.0</span><span class="src">PROC-042-v2 §2</span></div>
+<div class="td" style="color: #5C5C5C">Prazo de entrega</div>
+<div class="td">prazo padrão da rota <b>+ 2 dias úteis</b><span class="src">PROC-042 §3</span></div>
+<div class="td">prazo padrão da rota <b>+ 3 dias úteis</b><span class="src">PROC-042-v2 §3</span></div>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap"><span class="badge b-prop">Sinal C-14 · contradição pendente no Compliance</span><span class="badge b-prop">Mapeamento Manaus → Norte · OQ-05</span></div>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4"></path></svg>Regra de transição da v2</div></div>
+<p class="claim">Chamados abertos antes de 01/12/2023 que ainda estejam em processamento usam os multiplicadores da v1. Chamados novos a partir de 01/12/2023 usam os multiplicadores da v2.<span class="src">PROC-042-v2 §5</span></p><p class="claim" style="color: #5C5C5C">O texto fala só de multiplicadores. Fator de peso e prazo não são citados na transição.</p>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m9 9 6 6M15 9l-6 6"></path></svg>Não documentado na base</div><span class="badge b-gap">Lacuna</span></div>
+<p class="claim"><b>Sem valor em R$.</b> O valor base está na tabela mensal de fretes, que não faz parte da base.<span class="src">PROC-042 §2</span></p><p class="claim"><b>Prazo padrão da rota</b> não tem valor definido na base.<span class="src">PROC-042 §3</span></p>
+</div>
+<div class="sec" style="background: #FAFAFA; border-radius: 0 0 8px 8px">
+<div class="lbl">Fontes consultadas</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4"></path></svg>PROC-042 v1</span><span class="badge b-norm">Normativo</span><span style="color: #5C5C5C">§1 · §2 · §2.1 · §3</span></div><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4"></path></svg>PROC-042-v2</span><span class="badge b-norm">Normativo</span><span style="color: #5C5C5C">cabeçalho · §1 · §2 · §2.1 · §3 · §5</span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 6px">
+<div style="display: flex; gap: 8px">
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4v-9z"></path><path d="M7 11l4-8a2 2 0 0 1 3 2l-1 5h6a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 1H7"></path></svg>Útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13V4H4v9z"></path><path d="M7 13l4 8a2 2 0 0 0 3-2l-1-5h6a2 2 0 0 0 2-2l-2-7a2 2 0 0 0-2-1H7"></path></svg>Não útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h8"></path></svg>Copiar resposta</button>
+</div>
+<span class="badge b-prop">Ref. da resposta · formato a definir</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="flex-shrink: 0; padding: 0 0 20px; display: flex; justify-content: center">
+<div style="width: 820px; height: 44px; background: #FFFFFF; border: 1px solid #D6D6D6; border-bottom: 2px solid #4F52B2; border-radius: 4px; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; color: #616161">
+<label for="q1" style="position: absolute; width: 1px; height: 1px; overflow: hidden">Pergunta</label>
+<input id="q1" placeholder="Pergunte sobre prazos de entrega, frete, devolução ou SLAs" style="border: 0; outline: none; font: inherit; font-size: 14px; flex-grow: 1; background: transparent">
+<button type="button" aria-label="Anexar" style="border: 0; background: transparent; color: #616161; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11 12 19a5 5 0 0 1-7-7l8-8a3.5 3.5 0 0 1 5 5l-8 8a2 2 0 0 1-3-3l7-7"></path></svg></button>
+<button type="button" aria-label="Enviar" style="border: 0; background: transparent; color: #4F52B2; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 21 12 3 4l3 8z"></path><path d="M6 12h15"></path></svg></button>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section><section id="s2" class="scn">
+<h2>2 · Normativo + FAQ informal (VC-10)</h2>
+<div class="note">Cobre O-05, C-12.
+Normativo primeiro. O trecho do FAQ tem fundo e rótulo próprios, e a divergência é sinalizada no topo.
+
+A validar:
+• OQ-16: avaria segue POL-001 §3.5 ou sinistro (FAQ 38)?
+• OQ-08: exibir com rótulo ou omitir o que só existe no FAQ.</div>
+<div class="frame"><div style="width: 1280px; height: 1260px; display: flex; flex-direction: column; background: #EBEBEB; overflow: hidden">
+<div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative">
+<div style="width: 520px; height: 32px; background: #FFFFFF; border: 1px solid #D6D6D6; border-radius: 4px; display: flex; align-items: center; gap: 8px; padding: 0 10px; box-sizing: border-box; color: #616161"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><input aria-label="Pesquisar" placeholder="Pesquisar" style="border: 0; outline: none; font: inherit; font-size: 13px; flex-grow: 1; background: transparent"></div>
+<div style="position: absolute; right: 16px; top: 8px; width: 32px; height: 32px; border-radius: 16px; background: #D6D7F2; color: #3D3E78; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700">AT</div>
+</div>
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<div style="width: 68px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 4px">
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>Atividade</button>
+<button class="rail-i" type="button" style="color: #4F52B2; background: #FFFFFF; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path></svg>Chat</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3 19c0-3 3-5 6-5s6 2 6 5"></path><path d="M15 14c3 0 6 1.5 6 4.5"></path></svg>Equipes</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Calendário</button>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; background: #F5F5F5; border-radius: 8px 0 0 0; min-width: 0">
+<div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: #FFFFFF; border-bottom: 1px solid #E0E0E0; border-radius: 8px 0 0 0">
+<div style="width: 32px; height: 32px; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="font-size: 16px; font-weight: 700">NovaTech Assistant</div>
+<div style="display: flex; gap: 20px; margin-left: 16px; height: 56px">
+<a href="#" style="display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #242424; text-decoration: none; border-bottom: 3px solid #4F52B2; box-sizing: border-box; padding-top: 3px">Chat</a>
+<a href="#" style="display: flex; align-items: center; font-size: 14px; color: #5C5C5C; text-decoration: none">Sobre</a>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 24px 0; min-height: 0; overflow: hidden">
+<div style="width: 820px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px; color: #616161; font-size: 12px"><div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div>Hoje<div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div></div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<div style="font-size: 12px; color: #616161">09:41</div>
+<div style="max-width: 560px; background: #E8EBFA; border-radius: 6px; padding: 10px 14px; font-size: 14px; line-height: 21px">A carga chegou avariada. Como o cliente devolve?</div>
+</div>
+<div style="display: flex; gap: 12px">
+<div style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #616161"><span style="font-weight: 600; color: #242424">NovaTech Assistant</span><span style="border: 1px solid #C7C7C7; border-radius: 3px; padding: 0 4px; font-size: 10px">Bot</span>09:41</div>
+<div style="width: 720px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06)">
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700; line-height: 24px">Devolução · carga avariada</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="badge" style="background: #F0F0F0; color: #424242; font-weight: 500">Política de devolução</span></div>
+</div>
+<div style="margin: 0 20px 16px; padding: 12px 14px; background: #F6EAF8; border: 1px solid #D9B6E2; border-radius: 6px; display: flex; gap: 10px">
+<div style="color: #6B1F80; padding-top: 2px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3Z"></path><path d="M12 10v4"></path><path d="M12 17.5v.01"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; font-weight: 700; color: #6B1F80">Divergência entre documentos</div>
+<div style="font-size: 14px; line-height: 21px; color: #242424">A POL-001 trata avaria em trânsito como devolução sem custo. O FAQ descreve um processo separado de sinistro. A regra normativa aparece primeiro.</div>
+</div>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4"></path></svg>Regra normativa</div><span class="badge b-norm">Normativo · POL-001</span></div>
+<p class="claim">Avaria em trânsito é <b>defeito ou erro da NovaTech</b>: devolução <b>sem custo para o cliente</b>.<span class="src">POL-001 §3.5</span></p><p class="claim">O cliente abre chamado no <b>Portal do Cliente</b> (portal.novatech.com.br), na categoria “Devolução de Mercadoria”.<span class="src">POL-001 §3.3</span></p><p class="claim">Ele informa o número do <b>CT-e</b> e envia no mínimo <b>3 fotos</b>: embalagem externa, etiqueta de identificação e conteúdo.<span class="src">POL-001 §3.3</span></p>
+</div><div class="sec" style="background: #FFFAF0">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl" style="color: #6E3A00"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3Z"></path><path d="M12 10v4"></path><path d="M12 17.5v.01"></path></svg>Prática informal</div><span class="badge b-inf">Sem respaldo em documento normativo</span></div>
+<p class="claim">Carga danificada em trânsito tem <b>processo diferente de devolução</b>. O cliente registra a ocorrência em até <b>48h</b> após o recebimento, com fotos e laudo se possível.<span class="src">FAQ Item 38</span></p>
+<p class="claim">Encaminhar para <b>sinistros@novatech.com.br</b> (Jurídico).<span class="src">FAQ Item 38</span></p>
+<p class="claim" style="font-size: 12px; color: #6E3A00">FAQ-Atendimento: documento informal, NÃO validado por Compliance ou Operações.</p>
+</div>
+<div class="sec" style="background: #FAFAFA; border-radius: 0 0 8px 8px">
+<div class="lbl">Fontes consultadas</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4"></path></svg>POL-001</span><span class="badge b-norm">Normativo</span><span style="color: #5C5C5C">§3.3 · §3.5</span></div><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"></path><path d="M14 3v4h4"></path></svg>FAQ-Atendimento</span><span class="badge b-inf">Informal · sem respaldo normativo</span><span style="color: #5C5C5C">Item 38</span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 6px">
+<div style="display: flex; gap: 8px">
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4v-9z"></path><path d="M7 11l4-8a2 2 0 0 1 3 2l-1 5h6a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 1H7"></path></svg>Útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13V4H4v9z"></path><path d="M7 13l4 8a2 2 0 0 0 3-2l-1-5h6a2 2 0 0 0 2-2l-2-7a2 2 0 0 0-2-1H7"></path></svg>Não útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h8"></path></svg>Copiar resposta</button>
+</div>
+<span class="badge b-prop">Ref. da resposta · formato a definir</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="flex-shrink: 0; padding: 0 0 20px; display: flex; justify-content: center">
+<div style="width: 820px; height: 44px; background: #FFFFFF; border: 1px solid #D6D6D6; border-bottom: 2px solid #4F52B2; border-radius: 4px; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; color: #616161">
+<label for="q2" style="position: absolute; width: 1px; height: 1px; overflow: hidden">Pergunta</label>
+<input id="q2" placeholder="Pergunte sobre prazos de entrega, frete, devolução ou SLAs" style="border: 0; outline: none; font: inherit; font-size: 14px; flex-grow: 1; background: transparent">
+<button type="button" aria-label="Anexar" style="border: 0; background: transparent; color: #616161; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11 12 19a5 5 0 0 1-7-7l8-8a3.5 3.5 0 0 1 5 5l-8 8a2 2 0 0 1-3-3l7-7"></path></svg></button>
+<button type="button" aria-label="Enviar" style="border: 0; background: transparent; color: #4F52B2; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 21 12 3 4l3 8z"></path><path d="M6 12h15"></path></svg></button>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section><section id="s3" class="scn">
+<h2>3 · Termo inexistente (VC-02)</h2>
+<div class="note">Cobre O-08, C-05.
+Correção com a fonte e nenhum SLA associado a Platinum. Orientação do FAQ marcada como informal.
+
+Atenção: o encaminhamento ao Comercial (SLA-2024 §1 Nota) não tem chunk no Anexo B (cobertura parcial).</div>
+<div class="frame"><div style="width: 1280px; height: 1180px; display: flex; flex-direction: column; background: #EBEBEB; overflow: hidden">
+<div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative">
+<div style="width: 520px; height: 32px; background: #FFFFFF; border: 1px solid #D6D6D6; border-radius: 4px; display: flex; align-items: center; gap: 8px; padding: 0 10px; box-sizing: border-box; color: #616161"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input aria-label="Pesquisar" placeholder="Pesquisar" style="border: 0; outline: none; font: inherit; font-size: 13px; flex-grow: 1; background: transparent"></div>
+<div style="position: absolute; right: 16px; top: 8px; width: 32px; height: 32px; border-radius: 16px; background: #D6D7F2; color: #3D3E78; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700">AT</div>
+</div>
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<div style="width: 68px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 4px">
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg>Atividade</button>
+<button class="rail-i" type="button" style="color: #4F52B2; background: #FFFFFF; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M15 14c3 0 6 1.5 6 4.5"/></svg>Equipes</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendário</button>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; background: #F5F5F5; border-radius: 8px 0 0 0; min-width: 0">
+<div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: #FFFFFF; border-bottom: 1px solid #E0E0E0; border-radius: 8px 0 0 0">
+<div style="width: 32px; height: 32px; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="font-size: 16px; font-weight: 700">NovaTech Assistant</div>
+<div style="display: flex; gap: 20px; margin-left: 16px; height: 56px">
+<a href="#" style="display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #242424; text-decoration: none; border-bottom: 3px solid #4F52B2; box-sizing: border-box; padding-top: 3px">Chat</a>
+<a href="#" style="display: flex; align-items: center; font-size: 14px; color: #5C5C5C; text-decoration: none">Sobre</a>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 24px 0; min-height: 0; overflow: hidden">
+<div style="width: 820px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px; color: #616161; font-size: 12px"><div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div>Hoje<div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div></div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<div style="font-size: 12px; color: #616161">09:41</div>
+<div style="max-width: 560px; background: #E8EBFA; border-radius: 6px; padding: 10px 14px; font-size: 14px; line-height: 21px">Qual o SLA do cliente Platinum?</div>
+</div>
+<div style="display: flex; gap: 12px">
+<div style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #616161"><span style="font-weight: 600; color: #242424">NovaTech Assistant</span><span style="border: 1px solid #C7C7C7; border-radius: 3px; padding: 0 4px; font-size: 10px">Bot</span>09:41</div>
+<div style="width: 720px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06)">
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700; line-height: 24px">SLA · tier Platinum</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="badge" style="background: #F0F0F0; color: #424242; font-weight: 500">SLAs</span></div>
+</div>
+<div style="margin: 0 20px 16px; padding: 12px 14px; background: #EBF3FC; border: 1px solid #B4D3F2; border-radius: 6px; display: flex; gap: 10px">
+<div style="color: #0F548C; padding-top: 2px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8v.01"/></svg></div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; font-weight: 700; color: #0F548C">Não existe tier Platinum</div>
+<div style="font-size: 14px; line-height: 21px; color: #242424">A NovaTech tem três tiers: Gold, Silver e Standard. “Não existem outros tiers além dos três listados acima.”<span class="src">SLA-2024 §1 Nota</span></div>
+</div>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>Tiers existentes</div><span class="badge b-contr">Contratual · SLA-2024</span></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px"><div style="padding: 12px; border: 1px solid #E0E0E0; border-radius: 6px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 15px; font-weight: 700">Gold</div><div style="font-size: 13px; line-height: 19px; color: #424242">Contrato anual acima de R$ 500.000 OU mais de 200 operações/mês</div></div><div style="padding: 12px; border: 1px solid #E0E0E0; border-radius: 6px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 15px; font-weight: 700">Silver</div><div style="font-size: 13px; line-height: 19px; color: #424242">Contrato anual entre R$ 100.000 e R$ 500.000 OU entre 50 e 200 operações/mês</div></div><div style="padding: 12px; border: 1px solid #E0E0E0; border-radius: 6px; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 15px; font-weight: 700">Standard</div><div style="font-size: 13px; line-height: 19px; color: #424242">Todos os demais clientes</div></div></div><p class="claim" style="font-size: 12px; color: #5C5C5C">Critérios de elegibilidade<span class="src">SLA-2024 §1</span></p>
+</div><div class="sec" style="background: #FFFAF0">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl" style="color: #6E3A00"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17.5v.01"/></svg>O que pedir ao cliente</div><span class="badge b-inf">Sem respaldo em documento normativo</span></div>
+<p class="claim">Pedir o <b>número do contrato</b> para identificar o tier.<span class="src">FAQ Item 15</span></p>
+<p class="claim">O cliente pode estar se referindo ao programa de fidelidade antigo, descontinuado em 2022.<span class="src">FAQ Item 15</span></p>
+</div><div class="sec">
+<div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m13 6 6 6-6 6"/></svg>Encaminhamento</div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid #B5D6AC; background: #F3F9F1; border-radius: 6px">
+<div style="width: 40px; height: 40px; border-radius: 20px; background: #D7EBD1; color: #1D5B14; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1">
+<div style="font-size: 15px; font-weight: 700">Comercial</div>
+<div style="font-size: 13px; color: #424242">SLA diferenciado é tratado pelo Comercial.<span class="src">SLA-2024 §1 Nota</span></div>
+</div>
+</div>
+</div>
+<div class="sec" style="background: #FAFAFA; border-radius: 0 0 8px 8px">
+<div class="lbl">Fontes consultadas</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>SLA-2024</span><span class="badge b-contr">Contratual</span><span style="color: #5C5C5C">§1 · §1 Nota</span></div><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>FAQ-Atendimento</span><span class="badge b-inf">Informal · sem respaldo normativo</span><span style="color: #5C5C5C">Item 15</span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 6px">
+<div style="display: flex; gap: 8px">
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4v-9z"/><path d="M7 11l4-8a2 2 0 0 1 3 2l-1 5h6a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 1H7"/></svg>Útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13V4H4v9z"/><path d="M7 13l4 8a2 2 0 0 0 3-2l-1-5h6a2 2 0 0 0 2-2l-2-7a2 2 0 0 0-2-1H7"/></svg>Não útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>Copiar resposta</button>
+</div>
+<span class="badge b-prop">Ref. da resposta · formato a definir</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="flex-shrink: 0; padding: 0 0 20px; display: flex; justify-content: center">
+<div style="width: 820px; height: 44px; background: #FFFFFF; border: 1px solid #D6D6D6; border-bottom: 2px solid #4F52B2; border-radius: 4px; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; color: #616161">
+<label for="q3" style="position: absolute; width: 1px; height: 1px; overflow: hidden">Pergunta</label>
+<input id="q3" placeholder="Pergunte sobre prazos de entrega, frete, devolução ou SLAs" style="border: 0; outline: none; font: inherit; font-size: 14px; flex-grow: 1; background: transparent">
+<button type="button" aria-label="Anexar" style="border: 0; background: transparent; color: #616161; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11 12 19a5 5 0 0 1-7-7l8-8a3.5 3.5 0 0 1 5 5l-8 8a2 2 0 0 1-3-3l7-7"/></svg></button>
+<button type="button" aria-label="Enviar" style="border: 0; background: transparent; color: #4F52B2; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 21 12 3 4l3 8z"/><path d="M6 12h15"/></svg></button>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section><section id="s4" class="scn">
+<h2>4 · Lacuna na base (VC-04)</h2>
+<div class="note">Cobre O-06, C-07, C-08.
+Aviso explícito de lacuna, sem multiplicador e sem valor em R$.
+
+A validar:
+• Encaminhamento quando não há documento (a base não prevê).
+• OQ-11: regra de “não sei” com recuperação fraca.</div>
+<div class="frame"><div style="width: 1280px; height: 1000px; display: flex; flex-direction: column; background: #EBEBEB; overflow: hidden">
+<div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative">
+<div style="width: 520px; height: 32px; background: #FFFFFF; border: 1px solid #D6D6D6; border-radius: 4px; display: flex; align-items: center; gap: 8px; padding: 0 10px; box-sizing: border-box; color: #616161"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input aria-label="Pesquisar" placeholder="Pesquisar" style="border: 0; outline: none; font: inherit; font-size: 13px; flex-grow: 1; background: transparent"></div>
+<div style="position: absolute; right: 16px; top: 8px; width: 32px; height: 32px; border-radius: 16px; background: #D6D7F2; color: #3D3E78; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700">AT</div>
+</div>
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<div style="width: 68px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 4px">
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg>Atividade</button>
+<button class="rail-i" type="button" style="color: #4F52B2; background: #FFFFFF; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M15 14c3 0 6 1.5 6 4.5"/></svg>Equipes</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendário</button>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; background: #F5F5F5; border-radius: 8px 0 0 0; min-width: 0">
+<div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: #FFFFFF; border-bottom: 1px solid #E0E0E0; border-radius: 8px 0 0 0">
+<div style="width: 32px; height: 32px; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="font-size: 16px; font-weight: 700">NovaTech Assistant</div>
+<div style="display: flex; gap: 20px; margin-left: 16px; height: 56px">
+<a href="#" style="display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #242424; text-decoration: none; border-bottom: 3px solid #4F52B2; box-sizing: border-box; padding-top: 3px">Chat</a>
+<a href="#" style="display: flex; align-items: center; font-size: 14px; color: #5C5C5C; text-decoration: none">Sobre</a>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 24px 0; min-height: 0; overflow: hidden">
+<div style="width: 820px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px; color: #616161; font-size: 12px"><div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div>Hoje<div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div></div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<div style="font-size: 12px; color: #616161">09:41</div>
+<div style="max-width: 560px; background: #E8EBFA; border-radius: 6px; padding: 10px 14px; font-size: 14px; line-height: 21px">Frete para 300kg para Salvador?</div>
+</div>
+<div style="display: flex; gap: 12px">
+<div style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #616161"><span style="font-weight: 600; color: #242424">NovaTech Assistant</span><span style="border: 1px solid #C7C7C7; border-radius: 3px; padding: 0 4px; font-size: 10px">Bot</span>09:41</div>
+<div style="width: 720px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06)">
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700; line-height: 24px">Frete · 300kg para Salvador</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="badge" style="background: #F0F0F0; color: #424242; font-weight: 500">Regras de frete</span></div>
+</div>
+<div style="margin: 0 20px 16px; padding: 12px 14px; background: #F3F3F3; border: 1px solid #CFCFCF; border-radius: 6px; display: flex; gap: 10px">
+<div style="color: #333333; padding-top: 2px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></svg></div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; font-weight: 700; color: #333333">Não há documentação na base para este frete</div>
+<div style="font-size: 14px; line-height: 21px; color: #242424">O assistente não encontrou regra de frete para esta carga e não vai estimar valores.</div>
+</div>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>O que a base diz</div><span class="badge b-norm">Normativo · PROC-042</span></div>
+<p class="claim">300kg <b>não é frete especial</b>: a PROC-042 cobre só cargas com peso acima de 500kg.<span class="src">PROC-042 §1</span></p><p class="claim">A base não tem documento de frete para cargas até 500kg. Os multiplicadores regionais da PROC-042 <b>não se aplicam</b>.<span class="src">PROC-042 §1</span></p><p class="claim"><b>Sem valor em R$.</b> O valor base fica na tabela mensal de fretes, que não faz parte da base.<span class="src">PROC-042 §2</span></p>
+</div><div class="sec">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m13 6 6 6-6 6"/></svg>Encaminhamento</div><span class="badge b-prop">Encaminhamento de lacuna · a definir</span></div>
+<p class="claim" style="color: #424242">A base não indica para onde encaminhar frete de carga até 500kg.</p>
+</div>
+<div class="sec" style="background: #FAFAFA; border-radius: 0 0 8px 8px">
+<div class="lbl">Fontes consultadas</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>PROC-042 v1</span><span class="badge b-norm">Normativo</span><span style="color: #5C5C5C">§1 · §2</span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 6px">
+<div style="display: flex; gap: 8px">
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4v-9z"/><path d="M7 11l4-8a2 2 0 0 1 3 2l-1 5h6a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 1H7"/></svg>Útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13V4H4v9z"/><path d="M7 13l4 8a2 2 0 0 0 3-2l-1-5h6a2 2 0 0 0 2-2l-2-7a2 2 0 0 0-2-1H7"/></svg>Não útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>Copiar resposta</button>
+</div>
+<span class="badge b-prop">Ref. da resposta · formato a definir</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="flex-shrink: 0; padding: 0 0 20px; display: flex; justify-content: center">
+<div style="width: 820px; height: 44px; background: #FFFFFF; border: 1px solid #D6D6D6; border-bottom: 2px solid #4F52B2; border-radius: 4px; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; color: #616161">
+<label for="q4" style="position: absolute; width: 1px; height: 1px; overflow: hidden">Pergunta</label>
+<input id="q4" placeholder="Pergunte sobre prazos de entrega, frete, devolução ou SLAs" style="border: 0; outline: none; font: inherit; font-size: 14px; flex-grow: 1; background: transparent">
+<button type="button" aria-label="Anexar" style="border: 0; background: transparent; color: #616161; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11 12 19a5 5 0 0 1-7-7l8-8a3.5 3.5 0 0 1 5 5l-8 8a2 2 0 0 1-3-3l7-7"/></svg></button>
+<button type="button" aria-label="Enviar" style="border: 0; background: transparent; color: #4F52B2; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 21 12 3 4l3 8z"/><path d="M6 12h15"/></svg></button>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section><section id="s5" class="scn">
+<h2>5 · Multi-domínio + encaminhamento (VC-23)</h2>
+<div class="note">Cobre O-03, O-07, C-06.
+Uma resposta única em partes numeradas, cada uma com fonte. A inelegibilidade vem antes do prazo, para evitar a armadilha de inversão. O encaminhamento fica em destaque.</div>
+<div class="frame"><div style="width: 1280px; height: 1260px; display: flex; flex-direction: column; background: #EBEBEB; overflow: hidden">
+<div style="height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative">
+<div style="width: 520px; height: 32px; background: #FFFFFF; border: 1px solid #D6D6D6; border-radius: 4px; display: flex; align-items: center; gap: 8px; padding: 0 10px; box-sizing: border-box; color: #616161"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input aria-label="Pesquisar" placeholder="Pesquisar" style="border: 0; outline: none; font: inherit; font-size: 13px; flex-grow: 1; background: transparent"></div>
+<div style="position: absolute; right: 16px; top: 8px; width: 32px; height: 32px; border-radius: 16px; background: #D6D7F2; color: #3D3E78; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700">AT</div>
+</div>
+<div style="flex-grow: 1; display: flex; min-height: 0">
+<div style="width: 68px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 4px">
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg>Atividade</button>
+<button class="rail-i" type="button" style="color: #4F52B2; background: #FFFFFF; font-weight: 600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M15 14c3 0 6 1.5 6 4.5"/></svg>Equipes</button>
+<button class="rail-i" type="button"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Calendário</button>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; background: #F5F5F5; border-radius: 8px 0 0 0; min-width: 0">
+<div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 12px; padding: 0 20px; background: #FFFFFF; border-bottom: 1px solid #E0E0E0; border-radius: 8px 0 0 0">
+<div style="width: 32px; height: 32px; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="font-size: 16px; font-weight: 700">NovaTech Assistant</div>
+<div style="display: flex; gap: 20px; margin-left: 16px; height: 56px">
+<a href="#" style="display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #242424; text-decoration: none; border-bottom: 3px solid #4F52B2; box-sizing: border-box; padding-top: 3px">Chat</a>
+<a href="#" style="display: flex; align-items: center; font-size: 14px; color: #5C5C5C; text-decoration: none">Sobre</a>
+</div>
+</div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 24px 0; min-height: 0; overflow: hidden">
+<div style="width: 820px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px; color: #616161; font-size: 12px"><div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div>Hoje<div style="flex-grow: 1; height: 1px; background: #DCDCDC"></div></div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<div style="font-size: 12px; color: #616161">09:41</div>
+<div style="max-width: 560px; background: #E8EBFA; border-radius: 6px; padding: 10px 14px; font-size: 14px; line-height: 21px">Cliente quer devolver uma carga perigosa de 700kg que recebeu há 3 dias. Está no prazo? Como fica o frete?</div>
+</div>
+<div style="display: flex; gap: 12px">
+<div style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 6px; background: #4F52B2; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700">NA</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #616161"><span style="font-weight: 600; color: #242424">NovaTech Assistant</span><span style="border: 1px solid #C7C7C7; border-radius: 3px; padding: 0 4px; font-size: 10px">Bot</span>09:41</div>
+<div style="width: 720px; background: #FFFFFF; border: 1px solid #E0E0E0; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.06)">
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 18px; font-weight: 700; line-height: 24px">Devolução + frete · carga perigosa de 700kg</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap"><span class="badge" style="background: #F0F0F0; color: #424242; font-weight: 500">Política de devolução</span><span class="badge" style="background: #F0F0F0; color: #424242; font-weight: 500">Regras de frete</span></div>
+</div>
+<div style="margin: 0 20px 16px; padding: 12px 14px; background: #F6EAF8; border: 1px solid #D9B6E2; border-radius: 6px; display: flex; gap: 10px">
+<div style="color: #6B1F80; padding-top: 2px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17.5v.01"/></svg></div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 14px; font-weight: 700; color: #6B1F80">Carga perigosa: não segue o processo padrão</div>
+<div style="font-size: 14px; line-height: 21px; color: #242424">A resposta trata as duas partes da pergunta, mas a elegibilidade vem antes do prazo e do frete.</div>
+</div>
+</div><div class="sec">
+<div style="display: flex; align-items: center; gap: 10px"><div style="width: 24px; height: 24px; border-radius: 12px; background: #4F52B2; color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</div><div style="font-size: 15px; font-weight: 700">Elegibilidade</div></div>
+<p class="claim"><b>Carga perigosa</b> (classes 1 a 6 da ANTT) <b>não é elegível para devolução pelo processo padrão</b>.<span class="src">POL-001 §3.2</span></p><p class="claim">O caso tem <b>tratamento individual</b> com a Gestão de Riscos.<span class="src">POL-001 §3.2</span></p>
+</div><div class="sec">
+<div style="display: flex; align-items: center; gap: 10px"><div style="width: 24px; height: 24px; border-radius: 12px; background: #4F52B2; color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</div><div style="font-size: 15px; font-weight: 700">Prazo</div></div>
+<p class="claim">O prazo geral é de <b>7 dias úteis</b> após a data de recebimento confirmada no tracking. Ele é a regra geral e <b>não torna a carga elegível</b>.<span class="src">POL-001 §3.1</span></p>
+</div><div class="sec">
+<div style="display: flex; align-items: center; gap: 10px"><div style="width: 24px; height: 24px; border-radius: 12px; background: #4F52B2; color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</div><div style="font-size: 15px; font-weight: 700">Frete de volta</div></div>
+<p class="claim">Sem cálculo de frete reverso: a carga não segue o processo padrão de devolução, então os multiplicadores não se aplicam aqui.<span class="src">POL-001 §3.2</span></p>
+</div><div class="sec">
+<div class="lbl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m13 6 6 6-6 6"/></svg>Encaminhamento</div>
+<div style="display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid #B5D6AC; background: #F3F9F1; border-radius: 6px">
+<div style="width: 40px; height: 40px; border-radius: 20px; background: #D7EBD1; color: #1D5B14; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+<div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1">
+<div style="font-size: 15px; font-weight: 700">Gestão de Riscos · ramal 4500</div>
+<div style="font-size: 13px; color: #424242">Tratamento individual da devolução de carga perigosa.<span class="src">POL-001 §3.2</span></div>
+</div>
+</div>
+</div>
+<div class="sec" style="background: #FAFAFA; border-radius: 0 0 8px 8px">
+<div class="lbl">Fontes consultadas</div>
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="display: flex; align-items: center; gap: 10px; font-size: 13px"><span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-width: 128px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>POL-001</span><span class="badge b-norm">Normativo</span><span style="color: #5C5C5C">§3.1 · §3.2</span></div></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 6px">
+<div style="display: flex; gap: 8px">
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4v-9z"/><path d="M7 11l4-8a2 2 0 0 1 3 2l-1 5h6a2 2 0 0 1 2 2l-2 7a2 2 0 0 1-2 1H7"/></svg>Útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 13V4H4v9z"/><path d="M7 13l4 8a2 2 0 0 0 3-2l-1-5h6a2 2 0 0 0 2-2l-2-7a2 2 0 0 0-2-1H7"/></svg>Não útil</button>
+<button class="btn" type="button"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>Copiar resposta</button>
+</div>
+<span class="badge b-prop">Ref. da resposta · formato a definir</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="flex-shrink: 0; padding: 0 0 20px; display: flex; justify-content: center">
+<div style="width: 820px; height: 44px; background: #FFFFFF; border: 1px solid #D6D6D6; border-bottom: 2px solid #4F52B2; border-radius: 4px; display: flex; align-items: center; gap: 10px; padding: 0 12px; box-sizing: border-box; color: #616161">
+<label for="q5" style="position: absolute; width: 1px; height: 1px; overflow: hidden">Pergunta</label>
+<input id="q5" placeholder="Pergunte sobre prazos de entrega, frete, devolução ou SLAs" style="border: 0; outline: none; font: inherit; font-size: 14px; flex-grow: 1; background: transparent">
+<button type="button" aria-label="Anexar" style="border: 0; background: transparent; color: #616161; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11 12 19a5 5 0 0 1-7-7l8-8a3.5 3.5 0 0 1 5 5l-8 8a2 2 0 0 1-3-3l7-7"/></svg></button>
+<button type="button" aria-label="Enviar" style="border: 0; background: transparent; color: #4F52B2; cursor: pointer; width: 32px; height: 32px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 21 12 3 4l3 8z"/><path d="M6 12h15"/></svg></button>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+</main>
+</body>
+</html>
