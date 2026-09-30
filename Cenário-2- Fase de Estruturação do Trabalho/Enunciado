@@ -165,4 +165,6 @@ Usando o **Claude** e referenciando os Anexos A e C, escreva a seção **"Produc
 - A seção é machine-readable.
 - As regras são prescritivas (DEVE/NÃO DEVE).
 - O glossário é útil (termos que um LLM confundiria sem contexto de domínio).
-- As restrições de código são concretas o suficiente para influ
+- As restrições de código são concretas o suficiente para influenciar o output do Copilot.
+
+---
