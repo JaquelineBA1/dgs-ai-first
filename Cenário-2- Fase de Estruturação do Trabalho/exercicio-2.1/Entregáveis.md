@@ -728,3 +728,7 @@ Cada VC vira uma entrada em `prompts/eval/golden-queries.json` e nas fixtures `t
 - **OQ-21.** O formato de citação usa a seção do documento (`POL-001 §3.2`) ou o ID do chunk (`POL-001-B`)?
 
 _______________________________________________________________________________________________________________________________________________________
+3. Usando o **Claude Design**, crie um mockup da interface de resposta no Teams, coerente com os requirements.
+Em anexo
+_________________________________________________________________________________________________________________________________________________________
+4. Itere: peça ao Claude que atue como Tech Lead e aponte ambiguidades. Ajuste.
